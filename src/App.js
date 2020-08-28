@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './mintbean.png';
+import React, { useState } from "react";
+import "./styles/index.css";
+import Column from "./Column";
+let data = [
+  {
+    title: "Todo",
+    cards: ["Test !"],
+  },
+  {
+    title: "Doing",
+    cards: ["Test 2"],
+  },
+  {
+    title: "Done",
+    cards: ["Test 3"],
+  },
+];
 
 function App() {
-  return (
-    <div className="App">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <code>App.js</code> is the entrypoint to your app.
-        </p>
-        <h2>HAPPY HACKING!</h2>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-    </div>
-  );
+  const [colData, setcolData] = useState(data);
+
+  let columnns = colData.map((el) => {
+    return <Column data={el} change={setcolData} />;
+  });
+  return <div className="App">{columnns}</div>;
 }
 
 export default App;
