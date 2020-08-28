@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./styles/index.css";
 import Column from "./Column";
+
 let data = [
   {
     title: "Todo",
