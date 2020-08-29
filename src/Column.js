@@ -93,16 +93,12 @@ function Column(props) {
               : formTitle
             }
             <span className="spacer" />
-            {/* <button className="add-task-btn" onClick={handleButtonPress}>+</button> */}
             <div className="dropdown">
-              <button className="dropbtn">{'>'}</button>
+              <button className="dropbtn">...</button>
               <div className="dropdown-content">
                 <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
                 <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
                 <div className="drop-select" onClick={handleDeleteListSelect}>Delete List</div>
-                {/* <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a> */}
               </div>
             </div>
           </header>

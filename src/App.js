@@ -34,6 +34,7 @@ function App() {
   const [mainData, setMainData] = useState(ls.get("mainData") || D_COL)
   const [modal, setModal] = useState(false)
   const [modalDef, setModalDef] = useState()
+  const [hamburger, setHamburger] = useState(false)
 
   // useEffect(() => {
   //   ls.set("mainData", mainData)
@@ -233,6 +234,10 @@ function App() {
     }
     setMainData(newState)
   }
+
+  const toggleHamburger = () => {
+    setHamburger(prevState => !prevState)
+  }
   
   let display = mainData.columnOrder.map((colId, i) => {
     const column = mainData.columns[colId]
@@ -266,8 +271,19 @@ function App() {
           />
         ) : null}
       <header className="dash-header">
-        <button onClick={handleNewList}>Add List</button>
-        <div style={{color: "white"}}>{mainData.recycle.map(id => mainData.columns[id].title)}</div>
+        <div className="ham-drop">
+          <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
+            <div className="ham-line"></div>
+            <div className="ham-line"></div>
+            <div className="ham-line"></div>
+          </div>
+          <div className={`ham-content ${hamburger ? null : "ham-content-hide"}`}>
+            <div className="ham-select" onClick={handleNewList}>New List</div>
+            <div className="ham-select">Recylce Bin</div>
+          </div>
+        </div>
+        {/* <button onClick={handleNewList}>Add List</button>
+        <div style={{color: "white"}}>{mainData.recycle.map(id => mainData.columns[id].title)}</div> */}
       </header>
       <DragDropContext
         // onDragStart={onDragStart}
