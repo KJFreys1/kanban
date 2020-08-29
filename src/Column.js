@@ -10,9 +10,19 @@ function Column(props) {
 
   const inputRef = React.createRef();
 
-  const handleButtonPress = () => {
+  const handleNewCardSelect = () => {
     setStaticTitle(true)
-    props.toggleModal({ column: { id: props.column.id }})
+    props.toggleModal({ column: { id: props.column.id } })
+  }
+
+  const handleDeleteListSelect = () => {
+    setStaticTitle(true)
+    const newData = {
+      column: {
+        id: props.column.id
+      }
+    }
+    props.handleDeleteList(newData)
   }
 
   const handleStaticToggle = () => {
@@ -66,43 +76,54 @@ function Column(props) {
   )
 
   return (
-    <Draggable 
+    <Draggable
       draggableId={props.column.id}
       index={props.index}
     >
       {(provided) => (
-        <div 
+        <div
           className="column"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
 
-          <header {...provided.dragHandleProps} className="col-header">
-            {staticTitle 
+          <header {...provided.dragHandleProps} className="my-col-head">
+            {staticTitle
               ? <h1 className="col-title" onClick={handleStaticToggle}>{props.column.title}</h1>
-              : formTitle 
+              : formTitle
             }
-            <span className="spacer"/>
-            <button className="add-task-btn" onClick={handleButtonPress}>+</button>
+            <span className="spacer" />
+            {/* <button className="add-task-btn" onClick={handleButtonPress}>+</button> */}
+            <div className="dropdown">
+              <button className="dropbtn">{'>'}</button>
+              <div className="dropdown-content">
+                <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
+                <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
+                <div className="drop-select" onClick={handleDeleteListSelect}>Delete List</div>
+                {/* <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a> */}
+              </div>
+            </div>
           </header>
 
-          <Droppable 
-            droppableId={props.column.id} 
+          <Droppable
+            droppableId={props.column.id}
             type="task"
           >
             {(provided, snapshot) => (
-              <div 
+              <div
                 className={`t-container ${snapshot.isDraggingOver ? "gray" : null}`}
-                ref={provided.innerRef} 
+                ref={provided.innerRef}
                 {...provided.droppableProps}
               >
                 {props.tasks.map((task, idx) => (
-                  <Card 
-                    key={task.id} 
-                    task={task} 
-                    index={idx} 
+                  <Card
+                    key={task.id}
+                    task={task}
+                    index={idx}
                     column={props.column}
-                    handleEditCard={props.handleEditCard} 
+                    handleEditCard={props.handleEditCard}
                     handleDeleteCard={props.handleDeleteCard}
                     toggleModal={props.toggleModal}
                   />

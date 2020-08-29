@@ -26,7 +26,8 @@ const D_COL = {
       taskIds: []
     }
   },
-  columnOrder: ['column-1', 'column-2', 'column-3']
+  columnOrder: ['column-1', 'column-2', 'column-3'],
+  recycle: []
 }
 
 function App() {
@@ -34,9 +35,9 @@ function App() {
   const [modal, setModal] = useState(false)
   const [modalDef, setModalDef] = useState()
 
-  useEffect(() => {
-    ls.set("mainData", mainData)
-  }, [mainData])
+  // useEffect(() => {
+  //   ls.set("mainData", mainData)
+  // }, [mainData])
 
   // const onDragStart = () => {
   //   document.body.style.color = "orange"
@@ -218,6 +219,20 @@ function App() {
     }
     setMainData(newState)
   }
+
+  const handleDeleteList = newData => {
+    const newColumnOrder = [...mainData.columnOrder].filter(id => id !== newData.column.id)
+    
+    const newRecycle = [...mainData.recycle]
+    newRecycle.push(newData.column.id)
+
+    const newState = {
+      ...mainData,
+      columnOrder: newColumnOrder,
+      recycle: newRecycle
+    }
+    setMainData(newState)
+  }
   
   let display = mainData.columnOrder.map((colId, i) => {
     const column = mainData.columns[colId]
@@ -233,6 +248,7 @@ function App() {
         handleEditCard={handleEditCard}
         handleDeleteCard={handleDeleteCard}
         handleEditList={handleEditList}
+        handleDeleteList={handleDeleteList}
         toggleModal={toggleModal}
       />
     )
@@ -251,6 +267,7 @@ function App() {
         ) : null}
       <header className="dash-header">
         <button onClick={handleNewList}>Add List</button>
+        <div style={{color: "white"}}>{mainData.recycle.map(id => mainData.columns[id].title)}</div>
       </header>
       <DragDropContext
         // onDragStart={onDragStart}

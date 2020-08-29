@@ -52,9 +52,59 @@ body {
     flex-grow: 1;
 }
 
+/* Style The Dropdown Button */
+.dropbtn {
+    @include flexCenter();
+    width: 30px;
+    height: 30px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 30px;
+    top: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content .drop-select {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content .drop-select:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+  
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
 .column {
-    min-width: 220px;
-    width: 220px;
+    min-width: 300px;
+    width: 300px;
     height: fit-content;
     max-height: 84vh;
     margin-right: 16px;
@@ -65,18 +115,20 @@ body {
     display: flex;
     flex-direction: column;
 
-    .col-header {
+    .my-col-head {
         @include flexCenter();
         padding: 8px;
 
         .col-title {
+            padding: 4px;
             font-size: 1.5em;
         }
 
         .col-title-input {
+            padding: 4px;
             font-weight: bold;
             font-size: 1.5em;
-            width: 166px;
+            width: 242px;
 
             &:focus {
                 background-color: wheat;
@@ -180,6 +232,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
     @include flexCenter();
 
     .card-modal-inner {
