@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Draggable } from 'react-beautiful-dnd'
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
 
 function Card(props) {
-    const [content, setContent] = useState(props.task.content)
-
     const handleMenuSelect = (e, data) => {
         data.action()
     }
 
     const handleEdit = () => {
-        console.log('edit')
+        let newData = {
+            card: {
+                id: props.task.id,
+                content: props.task.content,
+                description: props.task.description
+            },
+            column: {
+                id: props.column.id
+            }
+        }
+        props.toggleModal(newData)
     }
 
     const handleDelete = () => {
@@ -20,20 +28,20 @@ function Card(props) {
     return (
         <>
             <ContextMenuTrigger id={props.task.id}>
-                <Draggable 
-                    draggableId={props.task.id} 
+                <Draggable
+                    draggableId={props.task.id}
                     index={props.index}
                 >
                     {(provided, snapshot) => (
-                        <div 
-                            className={`t-box ${snapshot.isDragging 
-                                    ? "blue" 
-                                    : null
-                            }`} 
-                            {...provided.draggableProps} 
-                            {...provided.dragHandleProps} 
+                        <div
+                            className={`t-box ${snapshot.isDragging
+                                ? "blue"
+                                : null
+                                }`}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
                             ref={provided.innerRef}
-                            // isDragging={snapshot.isDragging}
+                        // isDragging={snapshot.isDragging}
                         >
                             {/* <div className="handle" {...provided.dragHandleProps} /> */}
                             {props.task.content}
@@ -43,16 +51,16 @@ function Card(props) {
             </ContextMenuTrigger>
 
             <ContextMenu id={props.task.id} className="context-menu">
-                <MenuItem 
+                <MenuItem
                     className="context-item"
-                    data={{action: handleEdit, id: props.task.id}} 
+                    data={{ action: handleEdit, id: props.task.id }}
                     onClick={handleMenuSelect}
                 >
                     Edit
                 </MenuItem>
-                <MenuItem 
+                <MenuItem
                     className="context-item"
-                    data={{action: handleDelete, id: props.task.id}} 
+                    data={{ action: handleDelete, id: props.task.id }}
                     onClick={handleMenuSelect}
                 >
                     Delete

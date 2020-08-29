@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { v4 as uuidv4 } from 'uuid'
 import Column from "./Column";
+import CardInfo from "./modals/CardInfo"
 
 import "./styles/style.css"
 
 const D_COL = {
   tasks: {
-    'task-1': {id: 'task-1', content: 'Take out trash'},
-    'task-2': {id: 'task-2', content: 'Clean dishes'},
-    'task-3': {id: 'task-3', content: 'Take dogs out'},
-    'task-4': {id: 'task-4', content: 'Make bed'},
-    'task-5': {id: 'task-5', content: 'Shower'},
-    'task-6': {id: 'task-6', content: 'Laundry'}
+    'task-1': {id: 'task-1', content: 'Take out trash', description: ""},
+    'task-2': {id: 'task-2', content: 'Clean dishes', description: ""},
+    'task-3': {id: 'task-3', content: 'Take dogs out', description: ""},
+    'task-4': {id: 'task-4', content: 'Make bed', description: "test"},
+    'task-5': {id: 'task-5', content: 'Shower', description: ""},
+    'task-6': {id: 'task-6', content: 'Laundry', description: ""}
   },
   columns: {
     'column-1': {
@@ -36,6 +37,8 @@ const D_COL = {
 
 function App() {
   const [mainData, setMainData] = useState(D_COL)
+  const [modal, setModal] = useState(false)
+  const [modalDef, setModalDef] = useState()
 
   // const onDragStart = () => {
   //   document.body.style.color = "orange"
@@ -121,6 +124,11 @@ function App() {
     setMainData(newState)
   }
 
+  const toggleModal = newData => {
+    setModalDef(newData ? newData : null)
+    setModal(prevState => !prevState)
+  }
+
   const handleNewCard = newData => {
     const newState = {
       ...mainData,
@@ -128,7 +136,8 @@ function App() {
         ...mainData.tasks,
         [newData.card.id]: {
           id: newData.card.id,
-          content: newData.card.content
+          content: newData.card.content,
+          description: newData.card.description
         }
       },
       columns: {
@@ -152,7 +161,8 @@ function App() {
         ...mainData.tasks,
         [newData.card.id]: {
           id: newData.card.id,
-          content: newData.card.content
+          content: newData.card.content,
+          description: newData.card.description
         }
       }
     }
@@ -206,12 +216,22 @@ function App() {
         handleNewCard={handleNewCard} 
         handleEditCard={handleEditCard}
         handleEditList={handleEditList}
+        toggleModal={toggleModal}
       />
     )
   })
 
   return (
     <div id="dashboard">
+      {modal 
+        ? (
+          <CardInfo 
+            data={modalDef} 
+            close={toggleModal} 
+            addCard={handleNewCard}
+            editCard={handleEditCard}
+          />
+        ) : null}
       <header className="dash-header">
         <button onClick={handleNewList}>Add List</button>
       </header>

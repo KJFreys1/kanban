@@ -10,8 +10,13 @@ function Column(props) {
 
   const inputRef = React.createRef();
 
+  const handleButtonPress = () => {
+    setStaticTitle(true)
+    props.toggleModal({ column: { id: props.column.id }})
+  }
+
   const handleStaticToggle = () => {
-    setStaticTitle(prevState => !prevState)
+    setStaticTitle(false)
   }
 
   const handleInfoChange = e => {
@@ -71,14 +76,16 @@ function Column(props) {
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
+
           <header {...provided.dragHandleProps} className="col-header">
             {staticTitle 
               ? <h1 className="col-title" onClick={handleStaticToggle}>{props.column.title}</h1>
               : formTitle 
             }
             <span className="spacer"/>
-            <button className="add-task-btn" onClick={handleStaticToggle}>+</button>
+            <button className="add-task-btn" onClick={handleButtonPress}>+</button>
           </header>
+
           <Droppable 
             droppableId={props.column.id} 
             type="task"
@@ -95,17 +102,21 @@ function Column(props) {
                     key={task.id} 
                     task={task} 
                     index={idx} 
+                    column={props.column}
                     handleEditCard={props.handleEditCard} 
+                    toggleModal={props.toggleModal}
                   />
                 ))}
                 {provided.placeholder}
               </div>
             )}
           </Droppable>
+
           <form className="new-card-form" onSubmit={handleSubmit}>
-            <textarea value={info} onChange={handleInfoChange}></textarea>
+            <textarea value={info} onChange={handleInfoChange} placeholder="New card..."></textarea>
             <button type="sumbit">Submit</button>
           </form>
+
         </div>
       )}
     </Draggable>

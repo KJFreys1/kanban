@@ -13,6 +13,7 @@ body {
 }
 
 #dashboard {
+  position: relative;
   width: 100vw;
   height: 100vh;
 }
@@ -189,5 +190,55 @@ body {
 
 .context-menu .context-item:hover {
   cursor: pointer;
+}
+
+.card-modal-outer {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card-modal-outer .card-modal-inner {
+  padding: 10px;
+  height: 70vh;
+  width: 50vw;
+  background-color: gray;
+}
+
+.card-modal-outer .card-modal-inner .card-modal-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.card-modal-outer .card-modal-inner .card-modal-form label {
+  margin: 5px 0;
+}
+
+.card-modal-outer .card-modal-inner .card-modal-form textarea {
+  font-size: 1.2em;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 4px;
+  margin-bottom: 12px;
+}
+
+.card-modal-outer .card-modal-inner .card-modal-form textarea:focus {
+  background-color: wheat;
 }
 /*# sourceMappingURL=style.css.map */
