@@ -22,7 +22,17 @@ function Card(props) {
     }
 
     const handleDelete = () => {
-        console.log('delete')
+        let newData = {
+            card: {
+                id: props.task.id,
+                content: props.task.content,
+                description: props.task.description
+            },
+            column: {
+                id: props.column.id
+            }
+        }
+        props.handleDeleteCard(newData)
     }
 
     return (
@@ -41,7 +51,7 @@ function Card(props) {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}
-                        // isDragging={snapshot.isDragging}
+                            onDoubleClick={handleEdit}
                         >
                             {/* <div className="handle" {...provided.dragHandleProps} /> */}
                             {props.task.content}

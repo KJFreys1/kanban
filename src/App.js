@@ -167,6 +167,24 @@ function App() {
     setMainData(newState)
   }
 
+  const handleDeleteCard = newData => {
+    const newColumn = {...mainData.columns[newData.column.id]}
+    newColumn.taskIds.splice(newColumn.taskIds.indexOf(newData.card.id), 1)
+
+    const newTasks = {...mainData.tasks}
+    delete newTasks[newData.card.id]
+
+    const newState = {
+      ...mainData,
+      tasks: newTasks,
+      columns: {
+        ...mainData.columns,
+        [newData.column.id]: newColumn
+      }
+    }
+    setMainData(newState)
+  }
+
   const handleNewList = () => {
     let newId = uuidv4()
     const newState = {
@@ -213,6 +231,7 @@ function App() {
         index={i} 
         handleNewCard={handleNewCard} 
         handleEditCard={handleEditCard}
+        handleDeleteCard={handleDeleteCard}
         handleEditList={handleEditList}
         toggleModal={toggleModal}
       />

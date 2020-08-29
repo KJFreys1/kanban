@@ -9,6 +9,8 @@
 }
 
 body {
+  background-color: #95d5b2;
+  color: #081c15;
   overflow: hidden;
 }
 
@@ -20,7 +22,7 @@ body {
 
 .dash-header {
   padding: 8px;
-  background-color: wheat;
+  background-color: #081c15;
   height: 10vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -34,6 +36,7 @@ body {
 }
 
 .dash-header button {
+  background-color: #40916c;
   font-size: 1.2em;
   padding: 8px;
 }
@@ -63,7 +66,7 @@ body {
   margin-right: 16px;
   border: 1px solid gray;
   border-radius: 2px;
-  background-color: white;
+  background-color: #d8f3dc;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -114,7 +117,7 @@ body {
 }
 
 .column .new-card-form {
-  background-color: gray;
+  background-color: #081c15;
   padding: 8px;
 }
 
@@ -132,14 +135,14 @@ body {
 
 .column .new-card-form button {
   padding: 4px;
-  background-color: green;
+  background-color: #40916c;
   color: white;
   border-radius: 8px;
 }
 
 .column .new-card-form button:hover {
   cursor: pointer;
-  background-color: lightgreen;
+  background-color: #95d5b2;
 }
 
 .t-box {
@@ -180,12 +183,12 @@ body {
 .context-menu {
   width: 100px;
   background-color: black;
-  color: white;
 }
 
 .context-menu .context-item {
   padding: 8px;
   border: 2px solid white;
+  color: white;
 }
 
 .context-menu .context-item:hover {

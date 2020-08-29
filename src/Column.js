@@ -95,7 +95,6 @@ function Column(props) {
                 className={`t-container ${snapshot.isDraggingOver ? "gray" : null}`}
                 ref={provided.innerRef} 
                 {...provided.droppableProps}
-                // isDraggingOver={snapshot.isDraggingOver}
               >
                 {props.tasks.map((task, idx) => (
                   <Card 
@@ -104,6 +103,7 @@ function Column(props) {
                     index={idx} 
                     column={props.column}
                     handleEditCard={props.handleEditCard} 
+                    handleDeleteCard={props.handleDeleteCard}
                     toggleModal={props.toggleModal}
                   />
                 ))}
