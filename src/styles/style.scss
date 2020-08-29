@@ -5,6 +5,7 @@
 }
 
 * {
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -39,6 +40,7 @@ body {
     display: flex;
     height: 90vh;
     overflow-x: scroll;
+    padding: 3vh 8px;
 }
 
 .spacer {
@@ -47,16 +49,16 @@ body {
 
 .column {
     min-width: 220px;
+    width: 220px;
     height: fit-content;
     max-height: 84vh;
-    margin: 3vh 8px;
+    margin-right: 16px;
     border: 1px solid gray;
     border-radius: 2px;
     background-color: white;
 
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
 
     .col-header {
         @include flexCenter();
@@ -64,6 +66,17 @@ body {
 
         .col-title {
             font-size: 1.5em;
+        }
+
+        .col-title-input {
+            font-weight: bold;
+            font-size: 1.5em;
+            width: 166px;
+
+            &:focus {
+                background-color: wheat;
+                outline-color: black;
+            }
         }
 
         .add-task-btn {
@@ -74,13 +87,39 @@ body {
     }
 
     .t-container {
+        overflow-y: scroll;
         padding: 8px;
+        min-height: 120px;
     }
-}
 
-.t-container {
-    // flex-grow: 1;
-    min-height: 120px;
+    .new-card-form {
+        background-color: gray;
+        padding: 8px;
+
+        textarea {
+            outline: none;
+            border: none;
+            resize: none;
+            width: 100%;
+            padding: 8px;
+
+            &:focus {
+                background-color: wheat;
+            }
+        }
+
+        button {
+            padding: 4px;
+            background-color: green;
+            color: white;
+            border-radius: 8px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: lightgreen;
+            }
+        }
+    }
 }
 
 .t-box {
@@ -113,4 +152,20 @@ body {
     background-color: orange;
     border-radius: 4px;
     margin-right: 8px;
+}
+
+.context-menu {
+    width: 100px;
+    background-color: black;
+    color: white;
+
+    .context-item {
+        padding: 8px;
+        border: 2px solid white;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
 }

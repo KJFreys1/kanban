@@ -145,6 +145,20 @@ function App() {
     setMainData(newState)
   }
 
+  const handleEditCard = newData => {
+    const newState = {
+      ...mainData,
+      tasks: {
+        ...mainData.tasks,
+        [newData.card.id]: {
+          id: newData.card.id,
+          content: newData.card.content
+        }
+      }
+    }
+    setMainData(newState)
+  }
+
   const handleNewList = () => {
     let newId = uuidv4()
     const newState = {
@@ -164,12 +178,36 @@ function App() {
     }
     setMainData(newState)
   }
+
+  const handleEditList = newData => {
+    const newState = {
+      ...mainData,
+      columns: {
+        ...mainData.columns,
+        [newData.column.id]: {
+          ...mainData.columns[newData.column.id],
+          title: newData.column.title
+        }
+      }
+    }
+    setMainData(newState)
+  }
   
   let display = mainData.columnOrder.map((colId, i) => {
     const column = mainData.columns[colId]
     const tasks = column.taskIds.map(taskId => mainData.tasks[taskId])
 
-    return <Column key={column.id} column={column} tasks={tasks} index={i} handleNewCard={handleNewCard} />
+    return (
+      <Column 
+        key={column.id} 
+        column={column} 
+        tasks={tasks} 
+        index={i} 
+        handleNewCard={handleNewCard} 
+        handleEditCard={handleEditCard}
+        handleEditList={handleEditList}
+      />
+    )
   })
 
   return (

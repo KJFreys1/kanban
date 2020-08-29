@@ -1,40 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import { Draggable } from 'react-beautiful-dnd'
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
 
 function Card(props) {
-    // const handleChange = () => {
-    //     let tempVar = [...props.columns]
-    //     tempVar[props.colID].cards[props.cardID] = "new"
-    //     props.change(tempVar)
-    // }
+    const [content, setContent] = useState(props.task.content)
 
-    // return(
-    //     <div>
-    //         <p onClick={handleChange}>{props.data}</p>
-    //     </div>
-    // )
+    const handleMenuSelect = (e, data) => {
+        data.action()
+    }
+
+    const handleEdit = () => {
+        console.log('edit')
+    }
+
+    const handleDelete = () => {
+        console.log('delete')
+    }
 
     return (
-        <Draggable 
-            draggableId={props.task.id} 
-            index={props.index}
-        >
-            {(provided, snapshot) => (
-                <div 
-                    className={`t-box ${snapshot.isDragging 
-                            ? "blue" 
-                            : null
-                    }`} 
-                    {...provided.draggableProps} 
-                    {...provided.dragHandleProps} 
-                    ref={provided.innerRef}
-                    // isDragging={snapshot.isDragging}
+        <>
+            <ContextMenuTrigger id={props.task.id}>
+                <Draggable 
+                    draggableId={props.task.id} 
+                    index={props.index}
                 >
-                    {/* <div className="handle" {...provided.dragHandleProps} /> */}
-                    {props.task.content}
-                </div>
-            )}
-        </Draggable>
+                    {(provided, snapshot) => (
+                        <div 
+                            className={`t-box ${snapshot.isDragging 
+                                    ? "blue" 
+                                    : null
+                            }`} 
+                            {...provided.draggableProps} 
+                            {...provided.dragHandleProps} 
+                            ref={provided.innerRef}
+                            // isDragging={snapshot.isDragging}
+                        >
+                            {/* <div className="handle" {...provided.dragHandleProps} /> */}
+                            {props.task.content}
+                        </div>
+                    )}
+                </Draggable>
+            </ContextMenuTrigger>
+
+            <ContextMenu id={props.task.id} className="context-menu">
+                <MenuItem 
+                    className="context-item"
+                    data={{action: handleEdit, id: props.task.id}} 
+                    onClick={handleMenuSelect}
+                >
+                    Edit
+                </MenuItem>
+                <MenuItem 
+                    className="context-item"
+                    data={{action: handleDelete, id: props.task.id}} 
+                    onClick={handleMenuSelect}
+                >
+                    Delete
+                </MenuItem>
+            </ContextMenu>
+        </>
     )
 }
 
