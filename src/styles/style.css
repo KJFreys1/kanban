@@ -1,13 +1,101 @@
-body {
-  background-color: red;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+
+#dashboard {
+  width: 100vw;
+  height: 100vh;
+}
+
+.col-box {
+  height: 90vh;
+  width: 100vw;
+  overflow-x: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+}
+
+.column {
+  background-color: wheat;
+  margin: 20px;
+  width: 100px;
+  height: 500px;
+}
+
+.f-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c-container {
+  width: 220px;
+  margin: 8px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.c-container .c-title {
+  padding: 8px;
+}
+
+.c-container .t-container {
+  padding: 8px;
+}
+
+.t-container {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-height: 100px;
+}
+
+.t-box {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.t-box:focus {
+  outline: none;
+  border-color: red;
+}
+
+.blue {
+  background-color: skyblue;
+}
+
+.gray {
+  background-color: lightgray;
+}
+
+.handle {
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 4px;
+  margin-right: 8px;
 }
 /*# sourceMappingURL=style.css.map */

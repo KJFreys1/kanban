@@ -1,11 +1,91 @@
-@mixin flexContainer {
+@mixin flexCenter {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-body {
-    background-color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
 
-    @include flexContainer();
+#dashboard {
+    width: 100vw;
+    height: 100vh;
+}
+
+.col-box {
+    height: 90vh;
+    width: 100vw;
+    overflow-x: scroll;
+    display: flex;
+}
+
+.column {
+    background-color: wheat;
+    margin: 20px;
+    width: 100px;
+    height: 500px;
+}
+
+.f-container {
+    display: flex;
+}
+
+.c-container {
+    width: 220px;
+    margin: 8px;
+    border: 1px solid gray;
+    border-radius: 2px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    .c-title {
+        padding: 8px;
+    }
+
+    .t-container {
+        padding: 8px;
+    }
+}
+
+.t-container {
+    flex-grow: 1;
+    min-height: 100px;
+}
+
+.t-box {
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    padding: 8px;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+
+    &:focus {
+        outline: none;
+        border-color: red;
+    }
+}
+
+.blue {
+    background-color: skyblue;
+}
+
+.gray {
+    background-color: lightgray;
+}
+
+.handle {
+    width: 20px;
+    height: 20px;
+    background-color: orange;
+    border-radius: 4px;
+    margin-right: 8px;
 }
