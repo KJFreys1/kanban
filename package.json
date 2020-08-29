@@ -18,7 +18,8 @@
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "uuidv4": "^6.2.3"
   },
   "eslintConfig": {
     "extends": "react-app"

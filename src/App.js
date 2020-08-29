@@ -4,21 +4,6 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd"
 
 import "./styles/style.css"
 
-// const INIT_BOARD = [
-//   {
-//     title: "Todo",
-//     cards: ["Test !"],
-//   },
-//   {
-//     title: "Doing",
-//     cards: ["Test 2"],
-//   },
-//   {
-//     title: "Done",
-//     cards: ["Test 3"],
-//   },
-// ];
-
 const D_COL = {
   tasks: {
     'task-1': {id: 'task-1', content: 'Take out trash'},
@@ -39,34 +24,17 @@ const D_COL = {
       title: 'In Progress',
       taskIds: ['task-5', 'task-6']
     },
-    // 'column-3': {
-    //   id: 'column-3',
-    //   title: 'Finished',
-    //   taskIds: []
-    // }
+    'column-3': {
+      id: 'column-3',
+      title: 'Finished',
+      taskIds: []
+    }
   },
-  columnOrder: ['column-1', 'column-2']
+  columnOrder: ['column-1', 'column-2', 'column-3']
 }
 
 function App() {
-  // const [colData, setcolData] = useState(INIT_BOARD);
   const [mainData, setMainData] = useState(D_COL)
-
-  // const handleChange = newData => {
-  //   setcolData(newData)
-  // }
-
-  // let columns = colData.map((el, i) => {
-  //   return <Column key={i} colID={i} data={el} columns={INIT_BOARD} change={handleChange} />
-      
-  // });
-
-  let display = mainData.columnOrder.map((colId, i) => {
-    const column = mainData.columns[colId]
-    const tasks = column.taskIds.map(taskId => mainData.tasks[taskId])
-
-    return <Column key={column.id} column={column} tasks={tasks} index={i} />
-  })
 
   // const onDragStart = () => {
   //   document.body.style.color = "orange"
@@ -81,8 +49,6 @@ function App() {
   //   }
 
   const onDragEnd = result => {
-    document.body.style.color = "black"
-    document.body.style.backgroundColor = "inherit"
     const { destination, source, draggableId, type } = result
 
     if (!destination) {
@@ -154,35 +120,60 @@ function App() {
     setMainData(newState)
   }
 
-  return (
-    <DragDropContext
-      // onDragStart={onDragStart}
-      // onDragUpdate={onDragUpdate}
-      onDragEnd={onDragEnd}
-    >
-      <Droppable droppableId="all-columns" direction="horizontal" type="column">
-        {(provided) => (
-          <div 
-            className="f-container"
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {display}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
-  )
+  const handleNewCard = newData => {
+    const newState = {
+      ...mainData,
+      tasks: {
+        ...mainData.tasks,
+        [newData.card.id]: {
+          id: newData.card.id,
+          content: newData.card.content
+        }
+      },
+      columns: {
+        ...mainData.columns,
+        [newData.column.id]: {
+          ...mainData.columns[newData.column.id],
+          taskIds: [
+            ...mainData.columns[newData.column.id].taskIds,
+            newData.card.id
+          ]
+        }
+      }
+    }
+    setMainData(newState)
+  }
 
-  // return (
-  //   <div id="dashboard">
-  //     <header></header>
-  //     <div className="col-box">
-  //       {columns}
-  //     </div>
-  //   </div>
-  // )
+
+  let display = mainData.columnOrder.map((colId, i) => {
+    const column = mainData.columns[colId]
+    const tasks = column.taskIds.map(taskId => mainData.tasks[taskId])
+
+    return <Column key={column.id} column={column} tasks={tasks} index={i} handleNewCard={handleNewCard} />
+  })
+
+  return (
+    <div id="dashboard">
+      <DragDropContext
+        // onDragStart={onDragStart}
+        // onDragUpdate={onDragUpdate}
+        onDragEnd={onDragEnd}
+      >
+        <Droppable droppableId="all-columns" direction="horizontal" type="column">
+          {(provided) => (
+            <div 
+              className="col-container"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {display}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </div>
+  )
 }
 
 export default App;

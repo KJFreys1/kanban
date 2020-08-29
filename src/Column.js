@@ -1,8 +1,29 @@
 import React, { useState } from "react";
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { uuid } from 'uuidv4'
 import Card from "./Card"
 
 function Column(props) {
+  const [info, setInfo] = useState("")
+
+  const handleInfoChange = e => {
+    setInfo(e.target.value)
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    let newData = {
+      card: {
+        id: uuid(),
+        content: info
+      },
+      column: {
+        id: props.column.id
+      }
+    }
+    props.handleNewCard(newData)
+  }
+
   return (
     <Draggable 
       draggableId={props.column.id}
@@ -14,7 +35,11 @@ function Column(props) {
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
-          <h1 {...provided.dragHandleProps} className="c-title">{props.column.title}</h1>
+          <header className="col-header">
+            <h1 {...provided.dragHandleProps} className="col-title">{props.column.title}</h1>
+            <span className="spacer"/>
+            <button className="add-task-btn">+</button>
+          </header>
           <Droppable 
             droppableId={props.column.id} 
             type="task"
@@ -31,43 +56,14 @@ function Column(props) {
               </div>
             )}
           </Droppable>
+          <form onSubmit={handleSubmit}>
+            <textarea value={info} onChange={handleInfoChange}></textarea>
+            <button type="sumbit">Submit</button>
+          </form>
         </div>
       )}
     </Draggable>
   )
-  //   const [info, setInfo] = useState("")
-
-  //   let cards = props.data.cards.map((el, i) => {
-  //       return <Card key={`c${i}`} data={el} columns={props.columns} change={props.change} colID={props.colID} cardID={i}/>
-  //   })
-
-  //   const handleChange = e => {
-  //     setInfo(e.target.value)
-  //   }
-
-  //   const handleSubmit = e => {
-  //     e.preventDefault()
-  //     let tempVar = [...props.columns]
-  //     tempVar[props.colID].cards.push(info)
-  //     props.change(tempVar)
-  //   }
-
-
-  // return (
-  //   <div className="column">
-  //     <div className="col-head">
-  //       <h2 className="col-title">{props.data.title}</h2>
-  //       <button>+</button>
-  //     </div>
-  //     <div className="col-content">
-  //       { cards }
-  //     </div>
-  //     <form onSubmit={handleSubmit}>
-  //       <textarea value={info} onChange={handleChange}></textarea>
-  //       <button type="submit">Submit</button>
-  //     </form>
-  //   </div>
-  // );
 }
 
 export default Column
