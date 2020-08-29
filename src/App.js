@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import ls from 'local-storage'
 import Column from "./Column";
 import CardInfo from "./modals/CardInfo"
+import RecycleInfo from "./modals/RecycleInfo"
 
 import "./styles/style.css"
 
@@ -33,6 +34,7 @@ const D_COL = {
 function App() {
   const [mainData, setMainData] = useState(ls.get("mainData") || D_COL)
   const [modal, setModal] = useState(false)
+  const [recycle, setRecycle] = useState(false)
   const [modalDef, setModalDef] = useState()
   const [hamburger, setHamburger] = useState(false)
 
@@ -127,6 +129,10 @@ function App() {
   const toggleModal = newData => {
     setModalDef(newData ? newData : null)
     setModal(prevState => !prevState)
+  }
+
+  const toggleRecycle = () => {
+    setRecycle(prevState => !prevState)
   }
 
   const handleNewCard = newData => {
@@ -235,6 +241,20 @@ function App() {
     setMainData(newState)
   }
 
+  const handleRetrieveList = newData => {
+    const newRecycle = [...mainData.recycle].filter(id => id !== newData.column.id)
+    
+    const newColumnOrder = [...mainData.columnOrder]
+    newColumnOrder.push(newData.column.id)
+
+    const newState = {
+      ...mainData,
+      columnOrder: newColumnOrder,
+      recycle: newRecycle
+    }
+    setMainData(newState)
+  }
+
   const toggleHamburger = () => {
     setHamburger(prevState => !prevState)
   }
@@ -270,6 +290,15 @@ function App() {
             editCard={handleEditCard}
           />
         ) : null}
+      {recycle
+        ? (
+          <RecycleInfo
+            data={mainData}
+            close={toggleRecycle}
+            retrieveList={handleRetrieveList}
+          />
+        )
+        : null}
       <header className="dash-header">
         <div className="ham-drop">
           <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
@@ -279,11 +308,10 @@ function App() {
           </div>
           <div className={`ham-content ${hamburger ? null : "ham-content-hide"}`}>
             <div className="ham-select" onClick={handleNewList}>New List</div>
-            <div className="ham-select">Recylce Bin</div>
+            <div className="ham-select" onClick={toggleRecycle}>Recylce Bin</div>
+            <div className="ham-select">Preferences</div>
           </div>
         </div>
-        {/* <button onClick={handleNewList}>Add List</button>
-        <div style={{color: "white"}}>{mainData.recycle.map(id => mainData.columns[id].title)}</div> */}
       </header>
       <DragDropContext
         // onDragStart={onDragStart}
