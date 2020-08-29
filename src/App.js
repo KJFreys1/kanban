@@ -255,8 +255,41 @@ function App() {
     setMainData(newState)
   }
 
+  const handleRemoveList = newData => {
+    const newRecycle = [...mainData.recycle].filter(id => id !== newData.column.id)
+
+    const newTasks = {...mainData.tasks}
+    const newColumns = {...mainData.columns}
+    newColumns[newData.column.id].taskIds.forEach(id => {
+      delete newTasks[id]
+    })
+    delete newColumns[newData.column.id]
+
+    const newState = {
+      ...mainData,
+      tasks: newTasks,
+      columns: newColumns,
+      recycle: newRecycle
+    }
+    setMainData(newState)
+  }
+
   const toggleHamburger = () => {
     setHamburger(prevState => !prevState)
+  }
+
+  const handleNewListSelect = () => {
+    setHamburger(false)
+    handleNewList()
+  }
+
+  const handleRecycleSelect = () => {
+    setHamburger(false)
+    toggleRecycle()
+  }
+
+  const handlePreferenceSelect = () => {
+    setHamburger(false)
   }
   
   let display = mainData.columnOrder.map((colId, i) => {
@@ -279,6 +312,7 @@ function App() {
     )
   })
 
+  console.log(mainData)
   return (
     <div id="dashboard">
       {modal 
@@ -296,6 +330,7 @@ function App() {
             data={mainData}
             close={toggleRecycle}
             retrieveList={handleRetrieveList}
+            removeList={handleRemoveList}
           />
         )
         : null}
@@ -307,9 +342,9 @@ function App() {
             <div className="ham-line"></div>
           </div>
           <div className={`ham-content ${hamburger ? null : "ham-content-hide"}`}>
-            <div className="ham-select" onClick={handleNewList}>New List</div>
-            <div className="ham-select" onClick={toggleRecycle}>Recylce Bin</div>
-            <div className="ham-select">Preferences</div>
+            <div className="ham-select" onClick={handleNewListSelect}>New List</div>
+            <div className="ham-select" onClick={handleRecycleSelect}>Recylce Bin</div>
+            <div className="ham-select" onClick={handlePreferenceSelect}>Preferences</div>
           </div>
         </div>
       </header>

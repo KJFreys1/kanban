@@ -1,10 +1,15 @@
 import React from "react"
 
 export default function RecycleInfo(props) {
-    const handleClick = column => {
+    const handleRetrieve = column => {
         const newData = { column }
         props.retrieveList(newData)
         props.close()
+    }
+
+    const handleRemove = column => {
+        const newData = { column }
+        props.removeList(newData)
     }
     
     const display = props.data.recycle.map((id, i) => {
@@ -13,7 +18,8 @@ export default function RecycleInfo(props) {
             <div key={i}>
                 <div>{column.title}</div>
                 <div>Cards: {column.taskIds.length}</div>
-                <button onClick={() => handleClick(column)}>Retrieve List</button>
+                <button onClick={() => handleRetrieve(column)}>Retrieve List</button>
+                <button onClick={() => handleRemove(column)}>Delete List</button>
             </div>
         )
 
