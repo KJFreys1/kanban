@@ -1,30 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
 import { v4 as uuidv4 } from 'uuid'
+import ls from 'local-storage'
 import Column from "./Column";
 import CardInfo from "./modals/CardInfo"
 
 import "./styles/style.css"
 
 const D_COL = {
-  tasks: {
-    'task-1': {id: 'task-1', content: 'Take out trash', description: ""},
-    'task-2': {id: 'task-2', content: 'Clean dishes', description: ""},
-    'task-3': {id: 'task-3', content: 'Take dogs out', description: ""},
-    'task-4': {id: 'task-4', content: 'Make bed', description: "test"},
-    'task-5': {id: 'task-5', content: 'Shower', description: ""},
-    'task-6': {id: 'task-6', content: 'Laundry', description: ""}
-  },
+  tasks: {},
   columns: {
     'column-1': {
       id: 'column-1',
       title: 'To Do',
-      taskIds: ['task-1', 'task-2', 'task-3', 'task-4']
+      taskIds: []
     }, 
     'column-2': {
       id: 'column-2',
       title: 'In Progress',
-      taskIds: ['task-5', 'task-6']
+      taskIds: []
     },
     'column-3': {
       id: 'column-3',
@@ -36,9 +30,13 @@ const D_COL = {
 }
 
 function App() {
-  const [mainData, setMainData] = useState(D_COL)
+  const [mainData, setMainData] = useState(ls.get("mainData") || D_COL)
   const [modal, setModal] = useState(false)
   const [modalDef, setModalDef] = useState()
+
+  useEffect(() => {
+    ls.set("mainData", mainData)
+  }, [mainData])
 
   // const onDragStart = () => {
   //   document.body.style.color = "orange"

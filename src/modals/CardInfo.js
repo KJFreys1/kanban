@@ -15,6 +15,10 @@ export default function CardInfo({ data, close, addCard, editCard }) {
 
     const handleSubmit = e => {
         e.preventDefault()
+        if (content === "") {
+            close()
+            return
+        }
         if (data.card) {
             const newCard = {
                 card: {
