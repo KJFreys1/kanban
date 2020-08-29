@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Draggable, Droppable } from 'react-beautiful-dnd'
-import { uuid } from 'uuidv4'
+import { v4 as uuidv4 } from 'uuid'
 import Card from "./Card"
 
 function Column(props) {
@@ -14,7 +14,7 @@ function Column(props) {
     e.preventDefault()
     let newData = {
       card: {
-        id: uuid(),
+        id: uuidv4(),
         content: info
       },
       column: {
@@ -22,6 +22,7 @@ function Column(props) {
       }
     }
     props.handleNewCard(newData)
+    setInfo("")
   }
 
   return (
@@ -31,12 +32,12 @@ function Column(props) {
     >
       {(provided) => (
         <div 
-          className="c-container"
+          className="column"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
-          <header className="col-header">
-            <h1 {...provided.dragHandleProps} className="col-title">{props.column.title}</h1>
+          <header {...provided.dragHandleProps} className="col-header">
+            <h1 className="col-title">{props.column.title}</h1>
             <span className="spacer"/>
             <button className="add-task-btn">+</button>
           </header>

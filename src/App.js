@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Column from "./Column";
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
+import { v4 as uuidv4 } from 'uuid'
+import Column from "./Column";
 
 import "./styles/style.css"
 
@@ -144,7 +145,26 @@ function App() {
     setMainData(newState)
   }
 
-
+  const handleNewList = () => {
+    let newId = uuidv4()
+    const newState = {
+      ...mainData,
+      columns: {
+        ...mainData.columns,
+        [newId]: {
+          id: newId,
+          title: "Click to Edit",
+          taskIds: []
+        }
+      },
+      columnOrder: [
+        ...mainData.columnOrder,
+        newId
+      ]
+    }
+    setMainData(newState)
+  }
+  
   let display = mainData.columnOrder.map((colId, i) => {
     const column = mainData.columns[colId]
     const tasks = column.taskIds.map(taskId => mainData.tasks[taskId])
@@ -154,6 +174,9 @@ function App() {
 
   return (
     <div id="dashboard">
+      <header className="dash-header">
+        <button onClick={handleNewList}>Add List</button>
+      </header>
       <DragDropContext
         // onDragStart={onDragStart}
         // onDragUpdate={onDragUpdate}

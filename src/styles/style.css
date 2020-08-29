@@ -7,31 +7,41 @@
   transition: background-color 0.2s ease;
 }
 
+body {
+  overflow: hidden;
+}
+
 #dashboard {
   width: 100vw;
   height: 100vh;
 }
 
-.col-box {
-  height: 90vh;
-  width: 100vw;
-  overflow-x: scroll;
+.dash-header {
+  padding: 8px;
+  background-color: wheat;
+  height: 10vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.column {
-  background-color: wheat;
-  margin: 20px;
-  width: 100px;
-  height: 500px;
+.dash-header button {
+  font-size: 1.2em;
+  padding: 8px;
 }
 
 .col-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 90vh;
+  overflow-x: scroll;
 }
 
 .spacer {
@@ -40,9 +50,13 @@
           flex-grow: 1;
 }
 
-.c-container {
-  width: 220px;
-  margin: 8px;
+.column {
+  min-width: 220px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 84vh;
+  margin: 3vh 8px;
   border: 1px solid gray;
   border-radius: 2px;
   background-color: white;
@@ -53,9 +67,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow-y: scroll;
 }
 
-.c-container .col-header {
+.column .col-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -68,25 +83,22 @@
   padding: 8px;
 }
 
-.c-container .col-header .col-title {
+.column .col-header .col-title {
   font-size: 1.5em;
 }
 
-.c-container .col-header .add-task-btn {
+.column .col-header .add-task-btn {
   width: 30px;
   font-size: 1.5em;
   background-color: white;
 }
 
-.c-container .t-container {
+.column .t-container {
   padding: 8px;
 }
 
 .t-container {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 .t-box {
