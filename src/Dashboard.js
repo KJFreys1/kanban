@@ -5,6 +5,7 @@ import ls from 'local-storage'
 import Column from "./Column";
 import CardInfo from "./modals/CardInfo"
 import RecycleInfo from "./modals/RecycleInfo"
+import AlertClear from "./modals/AlertClear"
 
 import "./styles/style.css"
 
@@ -79,12 +80,13 @@ function App() {
   const [preferences, setPreferences] = useState(ls.get("preferences") || defPreferences)
   const [modal, setModal] = useState(false)
   const [recycle, setRecycle] = useState(false)
+  const [alertClear, setAlertClear] = useState(false)
   const [modalDef, setModalDef] = useState()
   const [hamburger, setHamburger] = useState(false)
 
-  useEffect(() => {
-    ls.set("mainData", mainData)
-  }, [mainData])
+  // useEffect(() => {
+  //   ls.set("mainData", mainData)
+  // }, [mainData])
 
   useEffect(() => {
     ls.set("preferences", preferences)
@@ -181,6 +183,10 @@ function App() {
 
   const toggleRecycle = () => {
     setRecycle(prevState => !prevState)
+  }
+
+  const toggleAlertClear = () => {
+    setAlertClear(prevState => !prevState)
   }
 
   const handleNewCard = newData => {
@@ -362,8 +368,17 @@ function App() {
   }
 
   const handlePreferenceSelect = newScheme => {
-    setPreferences({color: colorSchemes[newScheme]})
+    setPreferences({...preferences, color: colorSchemes[newScheme]})
     setHamburger(false)
+  }
+
+  const handleClearSelect = () => {
+    setHamburger(false)
+    toggleAlertClear()
+  }
+
+  const clearData = () => {
+    setMainData(D_COL)
   }
 
   let display = mainData.columnOrder.map((colId, i) => {
@@ -415,6 +430,13 @@ function App() {
         )
         : null}
 
+      <AlertClear 
+        show={alertClear}
+        close={toggleAlertClear}
+        clear={clearData}
+        pref={preferences}
+      />
+
       <header className="dash-header" style={{backgroundColor: preferences.color.highlight}}>
         <div className="ham-drop">
           <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
@@ -435,6 +457,7 @@ function App() {
                 <div className="ham-select" onClick={() => handlePreferenceSelect("rustic")}>Rustic</div>
               </div>
             </div>
+            <div className="ham-select" onClick={handleClearSelect}>Clear Board</div>
           </div>
         </div>
       </header>
