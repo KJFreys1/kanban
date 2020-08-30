@@ -38,6 +38,11 @@ function Card(props, { pref }) {
         props.handleMoveCard(props.task, props.columnIndex)
     }
 
+    const cardStyle = {
+        backgroundColor: props.pref.color.bgCard,
+        color: props.pref.color.cardText
+    }
+
     return (
         <>
             <ContextMenuTrigger id={props.task.id}>
@@ -45,21 +50,29 @@ function Card(props, { pref }) {
                     draggableId={props.task.id}
                     index={props.index}
                 >
-                    {(provided, snapshot) => (
-                        <div
-                            className={`t-box ${snapshot.isDragging
-                                ? "blue"
-                                : null
-                                }`}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}
-                            onDoubleClick={handleEdit}
-                        >
-                            {/* <div className="handle" {...provided.dragHandleProps} /> */}
-                            {props.task.content}
-                        </div>
-                    )}
+                    {(provided, snapshot) => {
+                        const otherProps = {
+                            ...provided.draggableProps,
+                            style: {
+                                ...provided.draggableProps.style,
+                                ...cardStyle,
+                            }
+                        }
+                        return (
+                            <div
+                                className={`t-box ${snapshot.isDragging
+                                    ? "fade"
+                                    : null
+                                    }`}
+                                {...otherProps}
+                                {...provided.dragHandleProps}
+                                ref={provided.innerRef}
+                                onDoubleClick={handleEdit}
+                            >
+                                <p>{props.task.content}</p>
+                            </div>
+                        )
+                    }}
                 </Draggable>
             </ContextMenuTrigger>
 
@@ -78,7 +91,7 @@ function Card(props, { pref }) {
                 >
                     Delete
                 </MenuItem>
-                {props.columnIndex < props.numColumns-1
+                {props.columnIndex < props.numColumns - 1
                     ? <MenuItem
                         className="context-item"
                         data={{ action: handleMoveRight, id: props.task.id }}

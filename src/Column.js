@@ -11,6 +11,13 @@ function Column(props) {
   const [showButton, setShowButton] = useState(false)
   const [hoverStyle, setHoverStyle] = useState({ backgroundColor: props.pref.color.bgSecondary })
 
+  useEffect(() => {
+    if (hoverStyle.backgroundColor !== props.pref.color.bgSecondary) {
+      setHoverStyle({backgroundColor: props.pref.color.bgSecondary})
+    }
+      
+  }, [props.pref])
+
   const scrollRef = useRef(null)
 
   const inputRef = useRef(null);
@@ -105,7 +112,7 @@ function Column(props) {
 
   const colStyle = {
     backgroundColor: props.pref.color.bgSecondary,
-    border: `1px solid ${props.pref.color.highlight}`
+    // border: `1px solid ${props.pref.color.highlight}`
   }
 
   return (
@@ -155,13 +162,9 @@ function Column(props) {
               droppableId={props.column.id}
               type="task"
             >
-              {(provided, snapshot) => (
+              {(provided) => (
                 <div
                   className="t-container"
-                  style={snapshot.isDraggingOver
-                    ? { backgroundColor: props.pref.color.highlight }
-                    : null
-                  }
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
@@ -184,7 +187,7 @@ function Column(props) {
                     <TextareaAutosize
                       value={showButton || info.length > 0 ? info : "+ Add new card"}
                       placeholder="+ Add new card"
-                      style={{ border: `1px solid ${props.pref.color.bgSecondary}` }}
+                      style={{ border: `1px solid ${props.pref.color.bgSecondary}`, backgroundColor: props.pref.color.bgSecondary }}
                       onChange={handleInfoChange}
                       onFocus={handleTextFocus}
                       onBlur={handleTextBlur}

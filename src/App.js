@@ -45,6 +45,29 @@ const colorSchemes = {
     bgSecondary: "#90e0ef",
     highlight: "#023e8a",
     warning: "#d00000"
+  },
+  punk: {
+    text: "#ffffff",
+    bgPrimary: "#002855",
+    bgSecondary: "#f72585",
+    // bgCard: "#d100d1",
+    cardText: "#001427",
+    highlight: "#8900f2",
+    warning: "red"
+  },
+  pallette: {
+    text: "#0f4c5c",
+    bgPrimary: "#d8e2dc",
+    bgSecondary: "#f4acb7",
+    highlight: "#9d8189",
+    warning: "#d00000"
+  }, 
+  rustic: {
+    text: "#2b2d42",
+    bgPrimary: "#8a817c",
+    bgSecondary: "#bcb8b1",
+    highlight: "#463f3a",
+    warning: "#d90429"
   }
 }
 
@@ -54,7 +77,7 @@ const defPreferences = {
 
 function App() {
   const [mainData, setMainData] = useState(ls.get("mainData") || D_COL)
-  const [preferences, setPreferences] = useState(ls.get("preferences") || defPreferences)
+  const [preferences, setPreferences] = useState(defPreferences)
   const [modal, setModal] = useState(false)
   const [recycle, setRecycle] = useState(false)
   const [modalDef, setModalDef] = useState()
@@ -64,9 +87,9 @@ function App() {
     ls.set("mainData", mainData)
   }, [mainData])
 
-  // useEffect(() => {
-  //   ls.set("preferences", preferences)
-  // }, [preferences])
+  useEffect(() => {
+    ls.set("preferences", preferences)
+  }, [preferences])
 
   // const onDragStart = () => {
 
@@ -82,7 +105,6 @@ function App() {
 
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result
-    console.log(type)
 
     if (!destination) {
       return
@@ -340,7 +362,8 @@ function App() {
     toggleRecycle()
   }
 
-  const handlePreferenceSelect = () => {
+  const handlePreferenceSelect = newScheme => {
+    setPreferences({color: colorSchemes[newScheme]})
     setHamburger(false)
   }
 
@@ -367,7 +390,6 @@ function App() {
     )
   })
 
-  console.log("render")
   return (
     <div id="dashboard" style={{backgroundColor: preferences.color.bgPrimary, color: preferences.color.text}}>
 
@@ -404,7 +426,16 @@ function App() {
           <div className={`ham-content ${hamburger ? null : "ham-content-hide"}`}>
             <div className="ham-select" onClick={handleNewListSelect}>New List</div>
             <div className="ham-select" onClick={handleRecycleSelect}>Recylce Bin</div>
-            <div className="ham-select ham-space" onClick={handlePreferenceSelect}>Preferences</div>
+            <div className="ham-select ham-space">
+              <div>Preferences</div>
+              <div className="pref-content">
+                <div className="ham-select" onClick={() => handlePreferenceSelect("mint")}>Mint</div>
+                <div className="ham-select" onClick={() => handlePreferenceSelect("ocean")}>Ocean</div>
+                <div className="ham-select" onClick={() => handlePreferenceSelect("punk")}>Punk</div>
+                <div className="ham-select" onClick={() => handlePreferenceSelect("pallette")}>Pallette</div>
+                <div className="ham-select" onClick={() => handlePreferenceSelect("rustic")}>Rustic</div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
