@@ -15,11 +15,12 @@ export default function RecycleInfo(props) {
     const display = props.data.recycle.map((id, i) => {
         let column = props.data.columns[id]
         return (
-            <div key={i}>
-                <div>{column.title}</div>
-                <div>Cards: {column.taskIds.length}</div>
-                <button onClick={() => handleRetrieve(column)}>Retrieve List</button>
-                <button onClick={() => handleRemove(column)}>Delete List</button>
+            <div key={i} className="recycle-item">
+                <div className="recycle-card-title">{column.title}</div>
+                <span className="spacer"></span>
+                <div className="recycle-card-num">Cards: {column.taskIds.length}</div>
+                <button className="retrieve-btn" onClick={() => handleRetrieve(column)}>Retrieve List</button>
+                <button className="delete-btn" onClick={() => handleRemove(column)}>Delete List</button>
             </div>
         )
 
@@ -28,8 +29,15 @@ export default function RecycleInfo(props) {
     return (
         <div className="card-modal-outer">
             <div className="card-modal-inner">
-                {display}
-                <button onClick={props.close}>Close</button>
+                <div className="recycle-head">
+                    <h1 className="recycle-title">Recycle Bin</h1>
+                    <span className="spacer"></span>
+                    <h1 className="close-modal" onClick={props.close}>X</h1>
+                </div>
+                <div className="recycle-item-container">
+                    {display}
+                </div>
+                {!display.length ? <p className="recycle-msg">Nothing in the recycle bin</p> : null}
             </div>
         </div>
     )

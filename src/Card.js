@@ -84,7 +84,7 @@ function Card(props) {
                         data={{ action: handleMoveRight, id: props.task.id }}
                         onClick={handleMenuSelect}
                     >
-                        Move Right*
+                        Move Right
                     </MenuItem>
                     : null}
             </ContextMenu>

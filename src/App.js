@@ -366,14 +366,15 @@ function App() {
       <header className="dash-header">
         <div className="ham-drop">
           <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
-            <div className="ham-line"></div>
-            <div className="ham-line"></div>
-            <div className="ham-line"></div>
+            <div className="ham-line ham1"></div>
+            <div className="ham-line ham2"></div>
+            <div className="ham-line ham3"></div>
           </div>
           <div className={`ham-content ${hamburger ? null : "ham-content-hide"}`}>
             <div className="ham-select" onClick={handleNewListSelect}>New List</div>
             <div className="ham-select" onClick={handleRecycleSelect}>Recylce Bin</div>
             <div className="ham-select" onClick={handlePreferenceSelect}>Preferences</div>
+            <div className="ham-space"></div>
           </div>
         </div>
       </header>
