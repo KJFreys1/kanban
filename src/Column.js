@@ -9,7 +9,7 @@ function Column(props) {
   const [title, setTitle] = useState(props.column.title)
   const [staticTitle, setStaticTitle] = useState(true)
   const [showButton, setShowButton] = useState(false)
-  const [hoverStyle, setHoverStyle] = useState({backgroundColor: props.pref.color.bgSecondary})
+  const [hoverStyle, setHoverStyle] = useState({ backgroundColor: props.pref.color.bgSecondary })
 
   const scrollRef = useRef(null)
 
@@ -86,7 +86,7 @@ function Column(props) {
   }
 
   useEffect(() => {
-    if (showButton)scrollRef.current.scrollIntoView({ behavior: "smooth"})
+    if (showButton) scrollRef.current.scrollIntoView({ behavior: "smooth" })
   }, [showButton])
 
   useEffect(() => {
@@ -100,85 +100,105 @@ function Column(props) {
   )
 
   const submitBtn = (
-    <button ref={scrollRef} type="submit" style={{backgroundColor: props.pref.color.highlight}}>Submit</button>
+    <button ref={scrollRef} type="submit" style={{ backgroundColor: props.pref.color.highlight }}>Submit</button>
   )
+
+  const colStyle = {
+    backgroundColor: props.pref.color.bgSecondary,
+    border: `1px solid ${props.pref.color.highlight}`
+  }
 
   return (
     <Draggable
       draggableId={props.column.id}
       index={props.index}
     >
-      {(provided) => (
-        <div
-          className="column"
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-          style={{
-            backgroundColor: props.pref.color.bgSecondary, 
-            border: `1px solid ${props.pref.color.highlight}`
-          }}
-        >
-
-          <header {...provided.dragHandleProps} className="my-col-head">
-            {staticTitle
-              ? <h1 className="col-title" onClick={handleStaticToggle}>{props.column.title}</h1>
-              : formTitle
-            }
-            <span className="spacer" />
-            <div className="dropdown">
-              <button className="dropbtn" style={hoverStyle} onMouseOver={() => setHoverStyle({backgroundColor: props.pref.color.bgPrimary})} onMouseOut={() => setHoverStyle({backgroundColor: props.pref.color.bgSecondary})}>...</button>
-              <div className="dropdown-content">
-                <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
-                <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
-                <div className="drop-select" onClick={handleDeleteListSelect}>Discard List</div>
-              </div>
-            </div>
-          </header>
-
-          <Droppable
-            droppableId={props.column.id}
-            type="task"
+      {(provided) => {
+        const otherProps = {
+          ...provided.draggableProps,
+          style: {
+            ...provided.draggableProps.style,
+            ...colStyle,
+          }
+        }
+        return (
+          <div
+            className="column"
+            {...otherProps}
+            ref={provided.innerRef}
           >
-            {(provided, snapshot) => (
-              <div
-                className="t-container"
-                style={snapshot.isDraggingOver ? {backgroundColor: props.pref.color.highlight} : null}
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {props.tasks.map((task, i) => (
-                  <Card
-                    key={task.id}
-                    pref={props.pref}
-                    task={task}
-                    index={i}
-                    column={props.column}
-                    columnIndex={props.index}
-                    numColumns={props.numColumns}
-                    handleMoveCard={props.handleMoveCard}
-                    handleEditCard={props.handleEditCard}
-                    handleDeleteCard={props.handleDeleteCard}
-                    toggleModal={props.toggleModal}
-                  />
-                ))}
-                <form className="new-card-form" style={{backgroundColor: props.pref.color.bgSecondary}} onSubmit={handleSubmit}>
-                  <TextareaAutosize
-                    value={showButton || info.length > 0 ? info : "+ Add new card"}
-                    placeholder="+ Add new card"
-                    style={{border: `1px solid ${props.pref.color.bgSecondary}`}}
-                    onChange={handleInfoChange}
-                    onFocus={handleTextFocus}
-                    onBlur={handleTextBlur}
-                  />
-                  {showButton ? submitBtn : null}
-                </form>
-                {provided.placeholder}
+            <header
+              {...provided.dragHandleProps}
+              className="my-col-head"
+            >
+              {staticTitle
+                ? <h1 className="col-title" onClick={handleStaticToggle}>{props.column.title}</h1>
+                : formTitle
+              }
+              <span className="spacer" />
+              <div className="dropdown">
+                <button
+                  className="dropbtn"
+                  style={hoverStyle}
+                  onMouseOver={() => setHoverStyle({ backgroundColor: props.pref.color.bgPrimary })}
+                  onMouseOut={() => setHoverStyle({ backgroundColor: props.pref.color.bgSecondary })}
+                >...</button>
+                <div className="dropdown-content">
+                  <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
+                  <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
+                  <div className="drop-select" onClick={handleDeleteListSelect}>Discard List</div>
+                </div>
               </div>
-            )}
-          </Droppable>
+            </header>
 
-        </div>
-      )}
+            <Droppable
+              droppableId={props.column.id}
+              type="task"
+            >
+              {(provided, snapshot) => (
+                <div
+                  className="t-container"
+                  style={snapshot.isDraggingOver
+                    ? { backgroundColor: props.pref.color.highlight }
+                    : null
+                  }
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {props.tasks.map((task, i) => (
+                    <Card
+                      key={task.id}
+                      pref={props.pref}
+                      task={task}
+                      index={i}
+                      column={props.column}
+                      columnIndex={props.index}
+                      numColumns={props.numColumns}
+                      handleMoveCard={props.handleMoveCard}
+                      handleEditCard={props.handleEditCard}
+                      handleDeleteCard={props.handleDeleteCard}
+                      toggleModal={props.toggleModal}
+                    />
+                  ))}
+                  <form className="new-card-form" style={{ backgroundColor: props.pref.color.bgSecondary }} onSubmit={handleSubmit}>
+                    <TextareaAutosize
+                      value={showButton || info.length > 0 ? info : "+ Add new card"}
+                      placeholder="+ Add new card"
+                      style={{ border: `1px solid ${props.pref.color.bgSecondary}` }}
+                      onChange={handleInfoChange}
+                      onFocus={handleTextFocus}
+                      onBlur={handleTextBlur}
+                    />
+                    {showButton ? submitBtn : null}
+                  </form>
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+
+          </div>
+        )
+      }}
     </Draggable>
   )
 }
