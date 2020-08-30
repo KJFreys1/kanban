@@ -15,7 +15,7 @@ const D_COL = {
       id: 'column-1',
       title: 'To Do',
       taskIds: []
-    }, 
+    },
     'column-2': {
       id: 'column-2',
       title: 'In Progress',
@@ -38,12 +38,12 @@ function App() {
   const [modalDef, setModalDef] = useState()
   const [hamburger, setHamburger] = useState(false)
 
-  // useEffect(() => {
-  //   ls.set("mainData", mainData)
-  // }, [mainData])
+  useEffect(() => {
+    ls.set("mainData", mainData)
+  }, [mainData])
 
   // const onDragStart = () => {
-  //   document.body.style.color = "orange"
+
   // }
 
   // const onDragUpdate = update => {
@@ -85,9 +85,9 @@ function App() {
       const newTaskIds = Array.from(start.taskIds)
       newTaskIds.splice(source.index, 1)
       newTaskIds.splice(destination.index, 0, draggableId)
-  
-      const newColumn = {...start, taskIds: newTaskIds}
-  
+
+      const newColumn = { ...start, taskIds: newTaskIds }
+
       const newState = {
         ...mainData,
         columns: {
@@ -95,7 +95,7 @@ function App() {
           [newColumn.id]: newColumn
         }
       }
-  
+
       setMainData(newState)
       return
     }
@@ -176,10 +176,10 @@ function App() {
   }
 
   const handleDeleteCard = newData => {
-    const newColumn = {...mainData.columns[newData.column.id]}
+    const newColumn = { ...mainData.columns[newData.column.id] }
     newColumn.taskIds.splice(newColumn.taskIds.indexOf(newData.card.id), 1)
 
-    const newTasks = {...mainData.tasks}
+    const newTasks = { ...mainData.tasks }
     delete newTasks[newData.card.id]
 
     const newState = {
@@ -229,7 +229,7 @@ function App() {
 
   const handleDeleteList = newData => {
     const newColumnOrder = [...mainData.columnOrder].filter(id => id !== newData.column.id)
-    
+
     const newRecycle = [...mainData.recycle]
     newRecycle.push(newData.column.id)
 
@@ -243,7 +243,7 @@ function App() {
 
   const handleRetrieveList = newData => {
     const newRecycle = [...mainData.recycle].filter(id => id !== newData.column.id)
-    
+
     const newColumnOrder = [...mainData.columnOrder]
     newColumnOrder.push(newData.column.id)
 
@@ -258,8 +258,8 @@ function App() {
   const handleRemoveList = newData => {
     const newRecycle = [...mainData.recycle].filter(id => id !== newData.column.id)
 
-    const newTasks = {...mainData.tasks}
-    const newColumns = {...mainData.columns}
+    const newTasks = { ...mainData.tasks }
+    const newColumns = { ...mainData.columns }
     newColumns[newData.column.id].taskIds.forEach(id => {
       delete newTasks[id]
     })
@@ -291,18 +291,18 @@ function App() {
   const handlePreferenceSelect = () => {
     setHamburger(false)
   }
-  
+
   let display = mainData.columnOrder.map((colId, i) => {
     const column = mainData.columns[colId]
     const tasks = column.taskIds.map(taskId => mainData.tasks[taskId])
 
     return (
-      <Column 
-        key={column.id} 
-        column={column} 
-        tasks={tasks} 
-        index={i} 
-        handleNewCard={handleNewCard} 
+      <Column
+        key={column.id}
+        column={column}
+        tasks={tasks}
+        index={i}
+        handleNewCard={handleNewCard}
         handleEditCard={handleEditCard}
         handleDeleteCard={handleDeleteCard}
         handleEditList={handleEditList}
@@ -312,14 +312,14 @@ function App() {
     )
   })
 
-  console.log(mainData)
   return (
     <div id="dashboard">
-      {modal 
+
+      {modal
         ? (
-          <CardInfo 
-            data={modalDef} 
-            close={toggleModal} 
+          <CardInfo
+            data={modalDef}
+            close={toggleModal}
             addCard={handleNewCard}
             editCard={handleEditCard}
           />
@@ -334,6 +334,7 @@ function App() {
           />
         )
         : null}
+
       <header className="dash-header">
         <div className="ham-drop">
           <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
@@ -348,6 +349,7 @@ function App() {
           </div>
         </div>
       </header>
+
       <DragDropContext
         // onDragStart={onDragStart}
         // onDragUpdate={onDragUpdate}
@@ -355,17 +357,19 @@ function App() {
       >
         <Droppable droppableId="all-columns" direction="horizontal" type="column">
           {(provided) => (
-            <div 
+            <div
               className="col-container"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
               {display}
+              <div style={{width: "300px", minWidth: "300px"}}></div>
               {provided.placeholder}
             </div>
           )}
         </Droppable>
       </DragDropContext>
+
     </div>
   )
 }

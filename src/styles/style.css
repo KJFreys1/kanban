@@ -117,6 +117,21 @@ body {
   background-color: #95d5b2;
 }
 
+.new-list-parabtn {
+  min-width: 300px;
+  width: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 84vh;
+  margin-right: 16px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  background-color: #d8f3dc;
+  padding: 12px;
+  font-size: 1.5em;
+}
+
 .column {
   min-width: 300px;
   width: 300px;
