@@ -84,9 +84,9 @@ function App() {
   const [modalDef, setModalDef] = useState()
   const [hamburger, setHamburger] = useState(false)
 
-  // useEffect(() => {
-  //   ls.set("mainData", mainData)
-  // }, [mainData])
+  useEffect(() => {
+    ls.set("mainData", mainData)
+  }, [mainData])
 
   useEffect(() => {
     ls.set("preferences", preferences)
@@ -247,7 +247,8 @@ function App() {
         [newData.card.id]: {
           id: newData.card.id,
           content: newData.card.content,
-          description: newData.card.description
+          description: newData.card.description,
+          date: newData.card.date
         }
       }
     }

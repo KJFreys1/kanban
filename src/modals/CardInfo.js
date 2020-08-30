@@ -40,6 +40,7 @@ export default function CardInfo({
           id: data.card.id,
           content,
           description,
+          date: data.card.date
         },
       };
       editCard(newCard);
@@ -89,8 +90,8 @@ export default function CardInfo({
           {data.card && data.card.date ? (
             <p>Created on {data.card.date}</p>
           ) : (
-            <p></p>
-          )}
+              <p></p>
+            )}
           <div className="btn-container">
             <button
               className="submit-btn"

@@ -564,7 +564,7 @@ body {
 
 .alert-clear {
   position: absolute;
-  background-color: lightgray;
+  background-color: white;
   height: 180px;
   width: 50vw;
   top: 0;
@@ -572,13 +572,15 @@ body {
   margin-left: -25vw;
   padding: 10px;
   border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 0 10px 1px black;
+          box-shadow: 0 0 10px 1px black;
   z-index: 30;
   -webkit-transform: translateY(-180px);
           transform: translateY(-180px);
-  -webkit-transition: -webkit-transform .4s ease;
-  transition: -webkit-transform .4s ease;
-  transition: transform .4s ease;
-  transition: transform .4s ease, -webkit-transform .4s ease;
+  -webkit-transition: -webkit-transform .5s ease;
+  transition: -webkit-transform .5s ease;
+  transition: transform .5s ease;
+  transition: transform .5s ease, -webkit-transform .5s ease;
 }
 
 .alert-clear h1 {

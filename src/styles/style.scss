@@ -464,7 +464,7 @@ body {
 
 .alert-clear {
     position: absolute;
-    background-color: lightgray;
+    background-color: white;
     height: 180px;
     width: 50vw;
     top: 0;
@@ -472,9 +472,10 @@ body {
     margin-left: -25vw;
     padding: 10px;
     border-radius: 0 0 6px 6px;
+    box-shadow: 0 0 10px 1px black;
     z-index: 30;
     transform: translateY(-180px);
-    transition: transform .4s ease;
+    transition: transform .5s ease;
 
     h1 {
         text-align: center;

@@ -20,7 +20,7 @@ export default function AlertClear(props) {
             className="alert-clear"
             style={props.show
                 ? {...alertStyle, transform: "translateY(0)"}
-                : {...alertStyle, transform: "translateY(-180px)"}
+                : {...alertStyle, transform: "translateY(-250px)", boxShadow: "none"}
             }
         >
             <h1>Are you sure you want to clear the board?</h1>
