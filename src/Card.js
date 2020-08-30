@@ -12,11 +12,10 @@ function Card(props) {
             card: {
                 id: props.task.id,
                 content: props.task.content,
-                description: props.task.description
+                description: props.task.description,
+                date: props.task.date
             },
-            column: {
-                id: props.column.id
-            }
+            column: props.column
         }
         props.toggleModal(newData)
     }

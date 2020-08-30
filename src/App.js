@@ -136,6 +136,8 @@ function App() {
   }
 
   const handleNewCard = newData => {
+    const utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+
     const newState = {
       ...mainData,
       tasks: {
@@ -143,7 +145,8 @@ function App() {
         [newData.card.id]: {
           id: newData.card.id,
           content: newData.card.content,
-          description: newData.card.description
+          description: newData.card.description,
+          date: utc
         }
       },
       columns: {
@@ -322,6 +325,7 @@ function App() {
             close={toggleModal}
             addCard={handleNewCard}
             editCard={handleEditCard}
+            deleteCard={handleDeleteCard}
           />
         ) : null}
       {recycle

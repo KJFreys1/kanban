@@ -12,7 +12,7 @@ function Column(props) {
 
   const handleNewCardSelect = () => {
     setStaticTitle(true)
-    props.toggleModal({ column: { id: props.column.id } })
+    props.toggleModal({ column: props.column })
   }
 
   const handleDeleteListSelect = () => {

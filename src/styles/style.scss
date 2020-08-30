@@ -5,7 +5,7 @@
 }
 
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -240,19 +240,31 @@ body {
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 10;
     @include flexCenter();
 
     .card-modal-inner {
         padding: 10px;
-        height: 70vh;
-        width: 50vw;
-        background-color: gray;
+        min-height: 500px;
+        max-height: 95vh;
+        width: 800px;
+        background-color: lightgray;
+        border-radius: 6px;
+        overflow: scroll;
 
         .card-modal-form {
             display: flex;
             flex-direction: column;
+            padding: 12px;
+
+            .modal-top {
+                display: flex;
+
+                .close-modal {
+                    cursor: pointer;
+                }
+            }
 
             label {
                 margin: 5px 0; 
@@ -260,16 +272,64 @@ body {
 
             textarea {
                 font-size: 1.2em;
+                overflow-y: auto;
+                word-wrap:break-word;
                 resize: none;
                 border: none;
+                border-radius: 6px;
                 outline: none;
-                padding: 4px;
-                margin-bottom: 12px;
+                background-color: lightgray;
+                padding: 4px 8px;
 
                 &:focus {
-                    background-color: wheat;
+                    background-color: white;
                 }
             }
+
+            .modal-ta-content {
+                font-size: 1.8em;
+                font-weight: bold;
+                margin-bottom: 12px;
+                transform: translateX(-8px);
+                transition: transform .1s ease, background-color .2s ease;
+
+                &:focus {
+                    transform: translateX(0);
+                }
+            }
+
+            .modal-ta-desc {
+                background-color: rgb(187, 187, 187);
+            }
+
+            p {
+                opacity: 50%;
+                margin-bottom: 20px;
+            }
+
+            .btn-container {
+                display: flex;
+
+                button {
+                    font-size: 1.2em;
+                    width: fit-content;
+                    margin: 10px 25px 10px 0;
+                    padding: 5px 12px;
+                    border-radius: 4px;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                }
+
+                .submit-btn {
+                    background-color: #4361ee;
+                }
+
+                .delete-btn {
+                    background-color: #d00000;
+                }
+            }
+
         }
     }
 }
