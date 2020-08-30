@@ -50,7 +50,6 @@ const colorSchemes = {
     text: "#ffffff",
     bgPrimary: "#002855",
     bgSecondary: "#f72585",
-    // bgCard: "#d100d1",
     cardText: "#001427",
     highlight: "#8900f2",
     warning: "red"
@@ -77,7 +76,7 @@ const defPreferences = {
 
 function App() {
   const [mainData, setMainData] = useState(ls.get("mainData") || D_COL)
-  const [preferences, setPreferences] = useState(defPreferences)
+  const [preferences, setPreferences] = useState(ls.get("preferences") || defPreferences)
   const [modal, setModal] = useState(false)
   const [recycle, setRecycle] = useState(false)
   const [modalDef, setModalDef] = useState()
