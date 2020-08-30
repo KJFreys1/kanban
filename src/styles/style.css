@@ -247,6 +247,11 @@ body {
   border-color: red;
 }
 
+.fade {
+  -webkit-box-shadow: 0 0 5px 3px lightgray;
+          box-shadow: 0 0 5px 3px lightgray;
+}
+
 .context-menu {
   width: 150px;
   background-color: rgba(110, 110, 110, 0.95);
@@ -269,7 +274,6 @@ body {
 
 .close-modal {
   cursor: pointer;
-  font-size: 30px;
 }
 
 .card-modal-outer {
