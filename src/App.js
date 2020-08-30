@@ -395,6 +395,7 @@ function App() {
         : null}
 
       <header className="dash-header" style={{backgroundColor: preferences.color.highlight}}>
+        <h2 className="title">Kanban</h2>
         <div className="ham-drop">
           <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
             <div className="ham-line ham1"></div>
