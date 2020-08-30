@@ -19,8 +19,8 @@ export default function RecycleInfo(props) {
                 <div className="recycle-card-title">{column.title}</div>
                 <span className="spacer"></span>
                 <div className="recycle-card-num">Cards: {column.taskIds.length}</div>
-                <button className="retrieve-btn" onClick={() => handleRetrieve(column)}>Retrieve List</button>
-                <button className="delete-btn" onClick={() => handleRemove(column)}>Delete List</button>
+                <button className="retrieve-btn" style={{backgroundColor: props.pref.color.highlight}} onClick={() => handleRetrieve(column)}>Retrieve List</button>
+                <button className="delete-btn" style={{backgroundColor: props.pref.color.warning}} onClick={() => handleRemove(column)}>Delete List</button>
             </div>
         )
 

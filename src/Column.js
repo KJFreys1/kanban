@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { v4 as uuidv4 } from 'uuid'
+import TextareaAutosize from 'react-textarea-autosize'
 import Card from "./Card"
 
 function Column(props) {
   const [info, setInfo] = useState("")
   const [title, setTitle] = useState(props.column.title)
   const [staticTitle, setStaticTitle] = useState(true)
+  const [showButton, setShowButton] = useState(false)
+  const [hoverStyle, setHoverStyle] = useState({backgroundColor: props.pref.color.bgSecondary})
 
-  const inputRef = React.createRef();
+  const scrollRef = useRef(null)
+
+  const inputRef = useRef(null);
 
   const handleNewCardSelect = () => {
     setStaticTitle(true)
@@ -27,6 +32,11 @@ function Column(props) {
 
   const handleStaticToggle = () => {
     setStaticTitle(false)
+  }
+
+  const handleBlur = () => {
+    setStaticTitle(true)
+    setTitle(props.column.title)
   }
 
   const handleInfoChange = e => {
@@ -50,7 +60,8 @@ function Column(props) {
   }
 
   const handleSubmit = e => {
-    e.preventDefault()
+    if (e) e.preventDefault()
+
     if (info === "") return
     let newData = {
       card: {
@@ -65,14 +76,31 @@ function Column(props) {
     setInfo("")
   }
 
+  const handleTextFocus = () => {
+    setShowButton(true)
+  }
+
+  const handleTextBlur = () => {
+    setShowButton(false)
+    handleSubmit()
+  }
+
+  useEffect(() => {
+    if (showButton)scrollRef.current.scrollIntoView({ behavior: "smooth"})
+  }, [showButton])
+
   useEffect(() => {
     if (!staticTitle) inputRef.current.focus()
   }, [staticTitle])
 
   const formTitle = (
     <form onSubmit={handleTitleSubmit}>
-      <input ref={inputRef} className="col-title-input" type="text" value={title} onChange={handleChangeTitle}></input>
+      <input ref={inputRef} className="col-title-input" type="text" value={title} onChange={handleChangeTitle} onBlur={handleBlur}></input>
     </form>
+  )
+
+  const submitBtn = (
+    <button ref={scrollRef} type="submit" style={{backgroundColor: props.pref.color.highlight}}>Submit</button>
   )
 
   return (
@@ -85,6 +113,10 @@ function Column(props) {
           className="column"
           {...provided.draggableProps}
           ref={provided.innerRef}
+          style={{
+            backgroundColor: props.pref.color.bgSecondary, 
+            border: `1px solid ${props.pref.color.highlight}`
+          }}
         >
 
           <header {...provided.dragHandleProps} className="my-col-head">
@@ -94,7 +126,7 @@ function Column(props) {
             }
             <span className="spacer" />
             <div className="dropdown">
-              <button className="dropbtn">...</button>
+              <button className="dropbtn" style={hoverStyle} onMouseOver={() => setHoverStyle({backgroundColor: props.pref.color.bgPrimary})} onMouseOut={() => setHoverStyle({backgroundColor: props.pref.color.bgSecondary})}>...</button>
               <div className="dropdown-content">
                 <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
                 <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
@@ -109,13 +141,15 @@ function Column(props) {
           >
             {(provided, snapshot) => (
               <div
-                className={`t-container ${snapshot.isDraggingOver ? "gray" : null}`}
+                className="t-container"
+                style={snapshot.isDraggingOver ? {backgroundColor: props.pref.color.highlight} : null}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
                 {props.tasks.map((task, i) => (
                   <Card
                     key={task.id}
+                    pref={props.pref}
                     task={task}
                     index={i}
                     column={props.column}
@@ -127,15 +161,21 @@ function Column(props) {
                     toggleModal={props.toggleModal}
                   />
                 ))}
+                <form className="new-card-form" style={{backgroundColor: props.pref.color.bgSecondary}} onSubmit={handleSubmit}>
+                  <TextareaAutosize
+                    value={showButton || info.length > 0 ? info : "+ Add new card"}
+                    placeholder="+ Add new card"
+                    style={{border: `1px solid ${props.pref.color.bgSecondary}`}}
+                    onChange={handleInfoChange}
+                    onFocus={handleTextFocus}
+                    onBlur={handleTextBlur}
+                  />
+                  {showButton ? submitBtn : null}
+                </form>
                 {provided.placeholder}
               </div>
             )}
           </Droppable>
-
-          <form className="new-card-form" onSubmit={handleSubmit}>
-            <textarea value={info} onChange={handleInfoChange} placeholder="New card..."></textarea>
-            <button type="sumbit">Submit</button>
-          </form>
 
         </div>
       )}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize from 'react-textarea-autosize'
 
 
-export default function CardInfo({ data, close, addCard, editCard, deleteCard }) {
+export default function CardInfo({ data, close, addCard, editCard, deleteCard, pref }) {
     const [content, setContent] = useState(data.card ? data.card.content : "")
     const [description, setDescription] = useState(data.card ? data.card.description : "")
 
@@ -65,8 +65,8 @@ export default function CardInfo({ data, close, addCard, editCard, deleteCard })
                     <TextareaAutosize className="modal-ta-desc" name="description" placeholder="Click to add description..." value={description} onChange={handleDescriptionChange} minRows={2} />
                     {data.card && data.card.date ? <p>Created on {data.card.date}</p> : <p></p>}
                     <div className="btn-container">
-                        <button className="submit-btn" type="submit">Save Information</button>
-                        {data.card ? <button className="delete-btn" onClick={handleDeleteBtn}>Delete Card</button> : null}
+                        <button className="submit-btn" type="submit" style={{backgroundColor: pref.color.highlight}}>Save Information</button>
+                        {data.card ? <button className="delete-btn" style={{backgroundColor: pref.color.warning}} onClick={handleDeleteBtn}>Delete Card</button> : null}
                     </div>
                 </form>
             </div>

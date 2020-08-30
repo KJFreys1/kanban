@@ -31,8 +31,30 @@ const D_COL = {
   recycle: []
 }
 
+const colorSchemes = {
+  mint: {
+    text: "#081c15",
+    bgPrimary: "#95d5b2",
+    bgSecondary: "#d8f3dc",
+    highlight: "#2d6a4f",
+    warning: "#d00000"
+  },
+  ocean: {
+    text: "#03045e",
+    bgPrimary: "#00b4d8",
+    bgSecondary: "#90e0ef",
+    highlight: "#023e8a",
+    warning: "#d00000"
+  }
+}
+
+const defPreferences = {
+  color: colorSchemes.mint
+}
+
 function App() {
   const [mainData, setMainData] = useState(ls.get("mainData") || D_COL)
+  const [preferences, setPreferences] = useState(ls.get("preferences") || defPreferences)
   const [modal, setModal] = useState(false)
   const [recycle, setRecycle] = useState(false)
   const [modalDef, setModalDef] = useState()
@@ -41,6 +63,10 @@ function App() {
   useEffect(() => {
     ls.set("mainData", mainData)
   }, [mainData])
+
+  // useEffect(() => {
+  //   ls.set("preferences", preferences)
+  // }, [preferences])
 
   // const onDragStart = () => {
 
@@ -56,6 +82,7 @@ function App() {
 
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result
+    console.log(type)
 
     if (!destination) {
       return
@@ -324,6 +351,7 @@ function App() {
     return (
       <Column
         key={column.id}
+        pref={preferences}
         column={column}
         tasks={tasks}
         index={i}
@@ -339,13 +367,15 @@ function App() {
     )
   })
 
+  console.log("render")
   return (
-    <div id="dashboard">
+    <div id="dashboard" style={{backgroundColor: preferences.color.bgPrimary, color: preferences.color.text}}>
 
       {modal
         ? (
           <CardInfo
             data={modalDef}
+            pref={preferences}
             close={toggleModal}
             addCard={handleNewCard}
             editCard={handleEditCard}
@@ -356,6 +386,7 @@ function App() {
         ? (
           <RecycleInfo
             data={mainData}
+            pref={preferences}
             close={toggleRecycle}
             retrieveList={handleRetrieveList}
             removeList={handleRemoveList}
@@ -363,7 +394,7 @@ function App() {
         )
         : null}
 
-      <header className="dash-header">
+      <header className="dash-header" style={{backgroundColor: preferences.color.highlight}}>
         <div className="ham-drop">
           <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
             <div className="ham-line ham1"></div>
@@ -373,8 +404,7 @@ function App() {
           <div className={`ham-content ${hamburger ? null : "ham-content-hide"}`}>
             <div className="ham-select" onClick={handleNewListSelect}>New List</div>
             <div className="ham-select" onClick={handleRecycleSelect}>Recylce Bin</div>
-            <div className="ham-select" onClick={handlePreferenceSelect}>Preferences</div>
-            <div className="ham-space"></div>
+            <div className="ham-select ham-space" onClick={handlePreferenceSelect}>Preferences</div>
           </div>
         </div>
       </header>

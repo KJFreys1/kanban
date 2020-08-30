@@ -2,7 +2,7 @@ import React from "react";
 import { Draggable } from 'react-beautiful-dnd'
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
 
-function Card(props) {
+function Card(props, { pref }) {
     const handleMenuSelect = (e, data) => {
         data.action()
     }
