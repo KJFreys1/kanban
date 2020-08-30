@@ -163,6 +163,28 @@ function App() {
     setMainData(newState)
   }
 
+  const handleMoveCard = (task, index) => {
+    const start = {...mainData.columns[mainData.columnOrder[index]]}
+    const finish = {...mainData.columns[mainData.columnOrder[index+1]]}
+
+    const newTasks = [...start.taskIds].filter(id => id !== task.id)
+    
+    finish.taskIds.push(task.id)
+
+    const newState = {
+      ...mainData,
+      columns: {
+        ...mainData.columns,
+        [start.id]: {
+          ...start,
+          taskIds: newTasks
+        },
+        [finish.id]: finish
+      }
+    }
+    setMainData(newState)
+  }
+
   const handleEditCard = newData => {
     const newState = {
       ...mainData,
@@ -305,7 +327,9 @@ function App() {
         column={column}
         tasks={tasks}
         index={i}
+        numColumns={mainData.columnOrder.length}
         handleNewCard={handleNewCard}
+        handleMoveCard={handleMoveCard}
         handleEditCard={handleEditCard}
         handleDeleteCard={handleDeleteCard}
         handleEditList={handleEditList}

@@ -34,6 +34,10 @@ function Card(props) {
         props.handleDeleteCard(newData)
     }
 
+    const handleMoveRight = () => {
+        props.handleMoveCard(props.task, props.columnIndex)
+    }
+
     return (
         <>
             <ContextMenuTrigger id={props.task.id}>
@@ -74,6 +78,15 @@ function Card(props) {
                 >
                     Delete
                 </MenuItem>
+                {props.columnIndex < props.numColumns-1
+                    ? <MenuItem
+                        className="context-item"
+                        data={{ action: handleMoveRight, id: props.task.id }}
+                        onClick={handleMenuSelect}
+                    >
+                        Move Right*
+                    </MenuItem>
+                    : null}
             </ContextMenu>
         </>
     )

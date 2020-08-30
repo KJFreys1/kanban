@@ -98,7 +98,7 @@ function Column(props) {
               <div className="dropdown-content">
                 <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
                 <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
-                <div className="drop-select" onClick={handleDeleteListSelect}>Delete List</div>
+                <div className="drop-select" onClick={handleDeleteListSelect}>Discard List</div>
               </div>
             </div>
           </header>
@@ -113,12 +113,15 @@ function Column(props) {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {props.tasks.map((task, idx) => (
+                {props.tasks.map((task, i) => (
                   <Card
                     key={task.id}
                     task={task}
-                    index={idx}
+                    index={i}
                     column={props.column}
+                    columnIndex={props.index}
+                    numColumns={props.numColumns}
+                    handleMoveCard={props.handleMoveCard}
                     handleEditCard={props.handleEditCard}
                     handleDeleteCard={props.handleDeleteCard}
                     toggleModal={props.toggleModal}

@@ -221,16 +221,21 @@ body {
 }
 
 .context-menu {
-    width: 100px;
-    background-color: black;
+    width: 150px;
+    background-color: rgba(110, 110, 110, 0.95);
+    border-radius: 4px;
+    padding: 5px 0;
+    border: 1px solid rgb(100, 100, 100);
 
     .context-item {
-        padding: 8px;
-        border: 2px solid white;
+        font-size: 1em;
+        padding: 2px 10px;
+        font-weight: bold;
         color: white;
 
         &:hover {
             cursor: pointer;
+            background-color: rgb(165, 165, 165);
         }
     }
 
