@@ -41,7 +41,7 @@ body {
           align-items: center;
 }
 
-.col-container {
+.drop-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -50,6 +50,15 @@ body {
           flex-grow: 1;
   overflow-x: auto;
   padding: 3vh 8px;
+}
+
+.col-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .spacer {
@@ -109,19 +118,30 @@ body {
   display: block;
 }
 
-.new-list-parabtn {
-  min-width: 300px;
-  width: 300px;
+.new-list-form {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  max-height: 84vh;
-  margin-right: 16px;
-  border: 1px solid gray;
-  border-radius: 2px;
-  background-color: #d8f3dc;
-  padding: 12px;
+}
+
+.new-list-form .new-list-parabtn {
   font-size: 1.5em;
+  min-width: 300px;
+  width: 300px;
+  margin-left: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 1.5em;
+}
+
+.new-list-form .new-list-parabtn:focus {
+  outline-color: lightgray;
+}
+
+.col-container-space {
+  min-width: 50vw;
+  height: 100px;
 }
 
 .column {
@@ -169,8 +189,7 @@ body {
 }
 
 .column .my-col-head .col-title-input:focus {
-  background-color: wheat;
-  outline-color: black;
+  outline-color: lightgray;
 }
 
 .column .my-col-head .add-task-btn {
@@ -196,7 +215,7 @@ body {
 }
 
 .column .new-card-form {
-  padding: 0 8px 8px 8px;
+  padding: 8px;
   border-radius: 0 0 8px 8px;
 }
 
@@ -284,7 +303,7 @@ body {
 
 .close-modal {
   position: absolute;
-  top: -10px;
+  top: 0px;
   right: 15px;
   font-size: 2.2em;
   cursor: pointer;

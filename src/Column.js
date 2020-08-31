@@ -123,8 +123,7 @@ function Column(props) {
   )
 
   const colStyle = {
-    backgroundColor: props.pref.color.bgSecondary,
-    // border: `1px solid ${props.pref.color.highlight}`
+    backgroundColor: props.pref.color.bgSecondary
   }
 
   return (
@@ -206,7 +205,7 @@ function Column(props) {
               <TextareaAutosize
                 value={showButton || info.length > 0 ? info : "+ Add new card"}
                 placeholder="+ Add new card"
-                style={{ border: `1px solid ${props.pref.color.bgSecondary}`, backgroundColor: props.pref.color.bgCard, ...textOffset }}
+                style={{ border: `1px solid ${props.pref.color.bgSecondary}`, ...textOffset }}
                 onChange={handleInfoChange}
                 onFocus={handleTextFocus}
                 onBlur={handleTextBlur}

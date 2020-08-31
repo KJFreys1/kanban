@@ -41,11 +41,18 @@ body {
     align-items: center;
 }
 
-.col-container {
+.drop-container {
     display: flex;
     flex-grow: 1;
     overflow-x: auto;
     padding: 3vh 8px;
+}
+
+.col-container {
+    display: flex;
+    flex-grow: 1;
+    // overflow-x: auto;
+    // padding: 3vh 8px;
 }
 
 .spacer {
@@ -94,17 +101,29 @@ body {
     display: block;
 }
 
-.new-list-parabtn {
-    min-width: 300px;
-    width: 300px;
+.new-list-form {
     height: fit-content;
-    max-height: 84vh;
-    margin-right: 16px;
-    border: 1px solid gray;
-    border-radius: 2px;
-    background-color: #d8f3dc;
-    padding: 12px;
-    font-size: 1.5em;
+
+    .new-list-parabtn {
+        font-size: 1.5em;
+        min-width: 300px;
+        width: 300px;
+        margin-left: 16px;
+        border: none;
+        border-radius: 5px;
+        padding: 8px;
+        font-size: 1.5em;
+
+        &:focus {
+            outline-color: lightgray;
+        }
+    }
+}
+
+
+.col-container-space {
+    min-width: 50vw;
+    height: 100px;
 }
 
 .column {
@@ -135,8 +154,7 @@ body {
             width: 242px;
 
             &:focus {
-                background-color: wheat;
-                outline-color: black;
+                outline-color: lightgray;
             }
         }
 
@@ -159,7 +177,7 @@ body {
     }
 
     .new-card-form {
-        padding: 0 8px 8px 8px;
+        padding: 8px;
         border-radius: 0 0 8px 8px;
         // background-color: #d8f3dc;
 
@@ -246,7 +264,7 @@ body {
 
 .close-modal {
     position: absolute;
-    top: -10px;
+    top: 0px;
     right: 15px;
     font-size: 2.2em;
     cursor: pointer;

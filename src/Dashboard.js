@@ -36,6 +36,8 @@ const colorSchemes = {
     text: "#081c15",
     bgPrimary: "#95d5b2",
     bgSecondary: "#d8f3dc",
+    bgCard: "#ffffff",
+    cardText: "#001427",
     highlight: "#2d6a4f",
     warning: "#d00000",
     projTitle: "#ffffff"
@@ -44,6 +46,8 @@ const colorSchemes = {
     text: "#03045e",
     bgPrimary: "#00b4d8",
     bgSecondary: "#90e0ef",
+    bgCard: "#ffffff",
+    cardText: "#001427",
     highlight: "#023e8a",
     warning: "#d00000",
     projTitle: "#ffffff"
@@ -52,6 +56,7 @@ const colorSchemes = {
     text: "#ffffff",
     bgPrimary: "#002855",
     bgSecondary: "#f72585",
+    bgCard: "#ffffff",
     cardText: "#001427",
     highlight: "#8900f2",
     warning: "#6a040f"
@@ -60,6 +65,8 @@ const colorSchemes = {
     text: "#0f4c5c",
     bgPrimary: "#d8e2dc",
     bgSecondary: "#f4acb7",
+    bgCard: "#ffffff",
+    cardText: "#001427",
     highlight: "#6d6875",
     warning: "#d00000",
     projTitle: "#ffffff"
@@ -68,6 +75,8 @@ const colorSchemes = {
     text: "#2b2d42",
     bgPrimary: "#8a817c",
     bgSecondary: "#bcb8b1",
+    bgCard: "#ffffff",
+    cardText: "#001427",
     highlight: "#463f3a",
     warning: "#a4161a",
     projTitle: "#ffffff"
@@ -80,9 +89,13 @@ const defPreferences = {
 
 function App() {
   const [mainData, setMainData] = useState(ls.get("mainData") || D_COL);
-  const [preferences, setPreferences] = useState(
-    ls.get("preferences") || defPreferences
-  );
+  const [preferences, setPreferences] = useState(ls.get("preferences") || defPreferences);
+  const [newTitle, setNewTitle] = useState("")
+  const [newTitleStyle, setNewTitleStyle] = useState({
+    backgroundColor: preferences.color.bgSecondary,
+    color: preferences.color.text
+  })
+  const [newTitleFocus, setNewTitleFocus] = useState(false)
   const [modal, setModal] = useState(false);
   const [recycle, setRecycle] = useState(false);
   const [alertClear, setAlertClear] = useState(false);
@@ -386,6 +399,41 @@ function App() {
     setMainData(D_COL);
   };
 
+  const handleNewTitleFocus = () => {
+    setNewTitleFocus(true)
+    setNewTitleStyle({
+      backgroundColor: preferences.color.bgCard,
+      color: preferences.color.cardText
+    })
+  }
+
+  const handleNewTitleBlur = () => {
+    setNewTitleFocus(false)
+    setNewTitleStyle({
+      backgroundColor: preferences.color.bgSecondary,
+      color: preferences.color.text
+    })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    let newId = uuidv4();
+    const newState = {
+      ...mainData,
+      columns: {
+        ...mainData.columns,
+        [newId]: {
+          id: newId,
+          title: newTitle,
+          taskIds: [],
+        },
+      },
+      columnOrder: [...mainData.columnOrder, newId],
+    };
+    setMainData(newState);
+    setNewTitle("")
+  }
+
   let display = mainData.columnOrder.map((colId, i) => {
     const column = mainData.columns[colId];
     const tasks = column.taskIds.map((taskId) => mainData.tasks[taskId]);
@@ -512,23 +560,36 @@ function App() {
         // onDragUpdate={onDragUpdate}
         onDragEnd={onDragEnd}
       >
-        <Droppable
-          droppableId="all-columns"
-          direction="horizontal"
-          type="column"
-        >
-          {(provided) => (
-            <div
-              className="col-container"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {display}
-              <div style={{ width: "300px", minWidth: "300px" }}></div>
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
+        <div className="drop-container">
+          <Droppable
+            droppableId="all-columns"
+            direction="horizontal"
+            type="column"
+          >
+            {(provided) => (
+              <div
+                className="col-container"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {display}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <form onSubmit={handleSubmit} className="new-list-form">
+            <input 
+              className="new-list-parabtn" 
+              style={newTitleStyle}
+              value={newTitleFocus || newTitle.length > 0 ? newTitle : "+ Add new list"}
+              placeholder="+ Add new list"
+              onFocus={handleNewTitleFocus}
+              onBlur={handleNewTitleBlur}
+              onChange={e => setNewTitle(e.target.value)}
+            ></input>
+          </form>
+          <div className="col-container-space"></div>
+        </div>
       </DragDropContext>
     </div>
   );

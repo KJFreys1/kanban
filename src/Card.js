@@ -64,7 +64,7 @@ function Card(props, { pref }) {
                                 ref={provided.innerRef}
                                 onDoubleClick={handleEdit}
                             >
-                                <p>{props.task.content}</p>
+                                {props.task.content}
                             </div>
                         )
                     }}
