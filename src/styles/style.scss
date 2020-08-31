@@ -38,7 +38,7 @@ body {
 .col-container {
     display: flex;
     flex-grow: 1;
-    overflow-x: scroll;
+    overflow-x: auto;
     padding: 3vh 8px;
 }
 
@@ -144,7 +144,7 @@ body {
     }
 
     .t-container {
-        overflow-y: scroll;
+        overflow-y: auto;
         min-height: 100px;
         padding: 8px 8px 0 8px;
     }
@@ -254,7 +254,7 @@ body {
         width: 800px;
         background-color: lightgray;
         border-radius: 6px;
-        overflow: scroll;
+        overflow: auto;
 
         .card-modal-form {
             display: flex;
