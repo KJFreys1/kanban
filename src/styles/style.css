@@ -71,7 +71,6 @@ body {
           align-items: center;
   width: 30px;
   height: 30px;
-  color: black;
   font-size: 1.5em;
   border: none;
   border-radius: 4px 0 0 4px;
@@ -183,13 +182,6 @@ body {
 }
 
 .column .t-container-outer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   overflow-y: scroll;
 }
 
@@ -207,6 +199,7 @@ body {
 
 .column .t-container-outer .new-card-form {
   padding: 0 8px 8px 8px;
+  border-radius: 0 0 8px 8px;
 }
 
 .column .t-container-outer .new-card-form textarea {
@@ -276,6 +269,7 @@ body {
   border-radius: 4px;
   padding: 5px 0;
   border: 1px solid #646464;
+  z-index: 20;
 }
 
 .context-menu .context-item {
@@ -291,6 +285,10 @@ body {
 }
 
 .close-modal {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  font-size: 2.2em;
   cursor: pointer;
 }
 
@@ -298,7 +296,7 @@ body {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -312,10 +310,12 @@ body {
 }
 
 .card-modal-outer .card-modal-inner {
+  position: relative;
   padding: 10px;
   min-height: 500px;
   max-height: 95vh;
-  width: 800px;
+  width: 90vw;
+  max-width: 800px;
   background-color: lightgray;
   border-radius: 6px;
   overflow: scroll;
@@ -336,6 +336,12 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form label {
@@ -350,37 +356,22 @@ body {
   border: none;
   border-radius: 6px;
   outline: none;
-  background-color: lightgray;
-  padding: 4px 8px;
-}
-
-.card-modal-outer .card-modal-inner .card-modal-form textarea:focus {
   background-color: white;
+  padding: 4px 8px;
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form .modal-ta-content {
   font-size: 1.8em;
   font-weight: bold;
   margin-bottom: 12px;
-  -webkit-transform: translateX(-8px);
-          transform: translateX(-8px);
-  -webkit-transition: -webkit-transform .1s ease;
-  transition: -webkit-transform .1s ease;
-  transition: transform .1s ease;
-  transition: transform .1s ease, -webkit-transform .1s ease;
-}
-
-.card-modal-outer .card-modal-inner .card-modal-form .modal-ta-content:focus {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form .modal-ta-desc {
-  background-color: #bbbbbb;
+  margin-bottom: 6px;
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form p {
-  opacity: 50%;
+  opacity: 70%;
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form input {
@@ -644,5 +635,25 @@ body {
 
 .title {
   margin-left: 24px;
+}
+
+@media only screen and (max-width: 850px) {
+  .btn-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .recycle-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 /*# sourceMappingURL=style.css.map */

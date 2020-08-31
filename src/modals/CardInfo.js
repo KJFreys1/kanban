@@ -80,14 +80,12 @@ export default function CardInfo({
 
   return (
     <div className="card-modal-outer">
-      <div className="card-modal-inner">
+      <div className="card-modal-inner" style={{backgroundColor: pref.color.bgSecondary}}>
+        <h1 aria-hidden="true" className="close-modal" onClick={close}>&times;</h1>
         <form className="card-modal-form" onSubmit={handleSubmit}>
           <div className="modal-top">
             <label htmlFor="content">From the {data.column.title} list:</label>
             <span className="spacer"></span>
-            <div className="close-modal" onClick={close}>
-              <span aria-hidden="true">&times;</span>
-            </div>
           </div>
           <TextareaAutosize
             className="modal-ta-content"

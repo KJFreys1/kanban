@@ -119,7 +119,7 @@ function Column(props) {
   )
 
   const submitBtn = (
-    <button ref={scrollRef} type="submit" style={{ backgroundColor: props.pref.color.highlight }}>Submit</button>
+    <button type="submit" style={{ backgroundColor: props.pref.color.highlight }}>Submit</button>
   )
 
   const colStyle = {
@@ -158,7 +158,7 @@ function Column(props) {
               <div className="dropdown">
                 <button
                   className="dropbtn"
-                  style={hoverStyle}
+                  style={{ ...hoverStyle, color: props.pref.color.text}}
                   onMouseOver={() => setHoverStyle({ backgroundColor: props.pref.color.bgPrimary })}
                   onMouseOut={() => setHoverStyle({ backgroundColor: props.pref.color.bgSecondary })}
                 >...</button>
@@ -214,6 +214,7 @@ function Column(props) {
                 />
                 {showButton ? submitBtn : null}
               </form>
+              <span ref={scrollRef} ></span>
             </div>
           </div>
         )

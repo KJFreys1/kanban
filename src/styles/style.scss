@@ -51,7 +51,7 @@ body {
     @include flexCenter();
     width: 30px;
     height: 30px;
-    color: black;
+    // color: black;
     font-size: 1.5em;
     border: none;
     border-radius: 4px 0 0 4px;
@@ -145,8 +145,6 @@ body {
     }
 
     .t-container-outer {
-        display: flex;
-        flex-direction: column;
         overflow-y: scroll;
 
         .t-container {
@@ -158,6 +156,7 @@ body {
 
         .new-card-form {
             padding: 0 8px 8px 8px;
+            border-radius: 0 0 8px 8px;
             // background-color: #d8f3dc;
     
             textarea {
@@ -230,6 +229,7 @@ body {
     border-radius: 4px;
     padding: 5px 0;
     border: 1px solid rgb(100, 100, 100);
+    z-index: 20;
 
     .context-item {
         font-size: 1em;
@@ -246,6 +246,10 @@ body {
 }
 
 .close-modal {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    font-size: 2.2em;
     cursor: pointer;
 }
 
@@ -253,15 +257,17 @@ body {
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 10;
     @include flexCenter();
 
     .card-modal-inner {
+        position: relative;
         padding: 10px;
         min-height: 500px;
         max-height: 95vh;
-        width: 800px;
+        width: 90vw;
+        max-width: 800px;
         background-color: lightgray;
         border-radius: 6px;
         overflow: scroll;
@@ -273,6 +279,8 @@ body {
 
             .modal-top {
                 display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             label {
@@ -287,32 +295,22 @@ body {
                 border: none;
                 border-radius: 6px;
                 outline: none;
-                background-color: lightgray;
+                background-color: white;
                 padding: 4px 8px;
-
-                &:focus {
-                    background-color: white;
-                }
             }
 
             .modal-ta-content {
                 font-size: 1.8em;
                 font-weight: bold;
                 margin-bottom: 12px;
-                transform: translateX(-8px);
-                transition: transform .1s ease;
-
-                &:focus {
-                    transform: translateX(0);
-                }
             }
 
             .modal-ta-desc {
-                background-color: rgb(187, 187, 187);
+                margin-bottom: 6px;
             }
 
             p {
-                opacity: 50%;
+                opacity: 70%;
             }
 
             input {
@@ -525,4 +523,14 @@ body {
 
 .title {
     margin-left: 24px;
+}
+
+@media only screen and (max-width: 850px) {
+    .btn-container {
+        @include flexCenter();
+    }
+
+    .recycle-item {
+        flex-direction: column;
+    }
 }

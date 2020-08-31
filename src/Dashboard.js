@@ -38,14 +38,16 @@ const colorSchemes = {
     bgPrimary: "#95d5b2",
     bgSecondary: "#d8f3dc",
     highlight: "#2d6a4f",
-    warning: "#d00000"
+    warning: "#d00000",
+    projTitle: "#ffffff"
   },
   ocean: {
     text: "#03045e",
     bgPrimary: "#00b4d8",
     bgSecondary: "#90e0ef",
     highlight: "#023e8a",
-    warning: "#d00000"
+    warning: "#d00000",
+    projTitle: "#ffffff"
   },
   punk: {
     text: "#ffffff",
@@ -53,21 +55,23 @@ const colorSchemes = {
     bgSecondary: "#f72585",
     cardText: "#001427",
     highlight: "#8900f2",
-    warning: "red"
+    warning: "#6a040f"
   },
   pallette: {
     text: "#0f4c5c",
     bgPrimary: "#d8e2dc",
     bgSecondary: "#f4acb7",
-    highlight: "#9d8189",
-    warning: "#d00000"
+    highlight: "#6d6875",
+    warning: "#d00000",
+    projTitle: "#ffffff"
   }, 
   rustic: {
     text: "#2b2d42",
     bgPrimary: "#8a817c",
     bgSecondary: "#bcb8b1",
     highlight: "#463f3a",
-    warning: "#d90429"
+    warning: "#a4161a",
+    projTitle: "#ffffff"
   }
 }
 
@@ -432,7 +436,7 @@ function App() {
       />
 
       <header className="dash-header" style={{backgroundColor: preferences.color.highlight}}>
-        <h2 className="title">Kanban</h2>
+        <h2 className="title" style={{color: preferences.color.projTitle}}>Kanban</h2>
         <span className="spacer"></span>
         <div className="ham-drop">
           <div className={`hamburger ${hamburger ? "ham-active" : null}`} onClick={toggleHamburger}>
