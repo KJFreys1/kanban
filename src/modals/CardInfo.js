@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
-import ls from 'local-storage'
 import TextareaAutosize from "react-textarea-autosize"
 
 export default function CardInfo({
@@ -114,7 +113,7 @@ export default function CardInfo({
             ? <p>Last edited on {data.card.updated}</p>
             : null
           }
-          {data.card && data.card.image ? <img src={data.card.image} height={50} width={50} /> : null}
+          {data.card && data.card.image ? <img src={data.card.image} height={50} width={50} alt="uploaded from local storage" /> : null}
           <input
             type="file"
             id="imageFile"

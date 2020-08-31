@@ -10,12 +10,12 @@ function Column(props) {
   const [staticTitle, setStaticTitle] = useState(true)
   const [showButton, setShowButton] = useState(false)
   const [hoverStyle, setHoverStyle] = useState({ backgroundColor: props.pref.color.bgSecondary })
+  const [textOffset, setTextOffset] = useState({ color: props.pref.color.text })
+  const [textFocus, setTextFocus] = useState(false)
 
   useEffect(() => {
-    if (hoverStyle.backgroundColor !== props.pref.color.bgSecondary) {
-      setHoverStyle({backgroundColor: props.pref.color.bgSecondary})
-    }
-      
+    setHoverStyle({ backgroundColor: props.pref.color.bgSecondary })
+    setTextOffset({ color: props.pref.color.text })
   }, [props.pref])
 
   const scrollRef = useRef(null)
@@ -85,11 +85,23 @@ function Column(props) {
 
   const handleTextFocus = () => {
     setShowButton(true)
+    setTextOffset({ color: props.pref.color.cardText })
+    setTextFocus(true)
   }
 
   const handleTextBlur = () => {
     setShowButton(false)
+    setTextOffset({ color: props.pref.color.text })
+    setTextFocus(false)
     handleSubmit()
+  }
+
+  const handleTextHover = () => {
+    setTextOffset({ color: props.pref.color.cardText })
+  }
+
+  const handleTextUnhover = () => {
+    if (!textFocus) setTextOffset({ color: props.pref.color.text })
   }
 
   useEffect(() => {
@@ -158,47 +170,51 @@ function Column(props) {
               </div>
             </header>
 
-            <Droppable
-              droppableId={props.column.id}
-              type="task"
-            >
-              {(provided) => (
-                <div
-                  className="t-container"
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {props.tasks.map((task, i) => (
-                    <Card
-                      key={task.id}
-                      pref={props.pref}
-                      task={task}
-                      index={i}
-                      column={props.column}
-                      columnIndex={props.index}
-                      numColumns={props.numColumns}
-                      handleMoveCard={props.handleMoveCard}
-                      handleEditCard={props.handleEditCard}
-                      handleDeleteCard={props.handleDeleteCard}
-                      toggleModal={props.toggleModal}
-                    />
-                  ))}
-                  <form className="new-card-form" style={{ backgroundColor: props.pref.color.bgSecondary }} onSubmit={handleSubmit}>
-                    <TextareaAutosize
-                      value={showButton || info.length > 0 ? info : "+ Add new card"}
-                      placeholder="+ Add new card"
-                      style={{ border: `1px solid ${props.pref.color.bgSecondary}`, backgroundColor: props.pref.color.bgSecondary }}
-                      onChange={handleInfoChange}
-                      onFocus={handleTextFocus}
-                      onBlur={handleTextBlur}
-                    />
-                    {showButton ? submitBtn : null}
-                  </form>
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-
+            <div className="t-container-outer">
+              <Droppable
+                droppableId={props.column.id}
+                type="task"
+              >
+                {(provided) => (
+                  <div
+                    className="t-container"
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {props.tasks.map((task, i) => (
+                      <Card
+                        key={task.id}
+                        pref={props.pref}
+                        task={task}
+                        index={i}
+                        column={props.column}
+                        columnIndex={props.index}
+                        numColumns={props.numColumns}
+                        handleMoveCard={props.handleMoveCard}
+                        handleEditCard={props.handleEditCard}
+                        handleDeleteCard={props.handleDeleteCard}
+                        toggleModal={props.toggleModal}
+                      />
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+              <span className="spacer"></span>
+              <form className="new-card-form" style={{ backgroundColor: props.pref.color.bgSecondary }} onSubmit={handleSubmit}>
+                <TextareaAutosize
+                  value={showButton || info.length > 0 ? info : "+ Add new card"}
+                  placeholder="+ Add new card"
+                  style={{ border: `1px solid ${props.pref.color.bgSecondary}`, backgroundColor: props.pref.color.bgCard, ...textOffset }}
+                  onChange={handleInfoChange}
+                  onFocus={handleTextFocus}
+                  onBlur={handleTextBlur}
+                  onMouseOver={handleTextHover}
+                  onMouseLeave={handleTextUnhover}
+                />
+                {showButton ? submitBtn : null}
+              </form>
+            </div>
           </div>
         )
       }}
