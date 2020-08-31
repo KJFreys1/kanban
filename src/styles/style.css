@@ -135,7 +135,7 @@ body {
   height: -moz-fit-content;
   height: fit-content;
   max-height: 84vh;
-  margin-right: 16px;
+  margin-left: 16px;
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -640,5 +640,9 @@ body {
 
 .alert-clear .alert-btn-grp button:hover {
   opacity: 70%;
+}
+
+.title {
+  margin-left: 24px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -110,7 +110,7 @@ body {
     width: 300px;
     height: fit-content;
     max-height: 84vh;
-    margin-right: 16px;
+    margin-left: 16px;
     border-radius: 5px;
 
     display: flex;
@@ -521,4 +521,8 @@ body {
             }
         }
     }
+}
+
+.title {
+    margin-left: 24px;
 }
