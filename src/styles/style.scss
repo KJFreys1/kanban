@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+@mixin med {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
 * {
   font-family: "Noto Sans KR", sans-serif;
   margin: 0;
@@ -509,7 +515,33 @@ body {
     }
   }
 }
-.title {
-  color: white;
-  margin-left: 3rem;
+
+.lp-body {
+  background-color: rgb(149, 213, 178);
+  width: 100vw;
+  height: 100vh;
+  padding-top: 10vh;
+
+  .title {
+    color: white;
+    margin-left: 3rem;
+  }
+
+  .center {
+    width: 80vw;
+    height: 50vh;
+    margin: auto;
+    background-color: #e9ecef;
+    padding: 4rem 2rem;
+    border-radius: 0.3rem;
+  }
+  @include med {
+    .img {
+      width: 40vw;
+      height: 35vh;
+      background-image: url("../imgs/pexels-tranmautritam-251225.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
 }
