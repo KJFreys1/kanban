@@ -1,514 +1,515 @@
 @mixin flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 * {
-    font-family: 'Noto Sans KR', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: border-color .4s ease, background-color .4s ease;
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: border-color 0.4s ease, background-color 0.4s ease;
 }
 
-
 body {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
 #dashboard {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .dash-header {
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .col-container {
-    display: flex;
-    flex-grow: 1;
-    overflow-x: auto;
-    padding: 3vh 8px;
+  display: flex;
+  flex-grow: 1;
+  overflow-x: auto;
+  margin: 3rem;
 }
 
 .spacer {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 /* Style The Dropdown Button */
 .dropbtn {
-    @include flexCenter();
-    width: 30px;
-    height: 30px;
-    color: black;
-    font-size: 1.5em;
-    border: none;
-    border-radius: 4px 0 0 4px;
-    cursor: pointer;
+  @include flexCenter();
+  width: 30px;
+  height: 30px;
+  color: black;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
 }
-  
-  /* The container <div> - needed to position the dropdown content */
+
+/* The container <div> - needed to position the dropdown content */
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    left: 30px;
-    top: 0;
-    background-color: #f9f9f9;
-    min-width: 260px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  display: none;
+  position: absolute;
+  left: 30px;
+  top: 0;
+  background-color: #f9f9f9;
+  min-width: 260px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .dropdown-content .drop-select {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 .dropdown-content .drop-select:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
+  background-color: #f1f1f1;
+  cursor: pointer;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 .new-list-parabtn {
-    min-width: 300px;
-    width: 300px;
-    height: fit-content;
-    max-height: 84vh;
-    margin-right: 16px;
-    border: 1px solid gray;
-    border-radius: 2px;
-    background-color: #d8f3dc;
-    padding: 12px;
-    font-size: 1.5em;
+  min-width: 300px;
+  width: 300px;
+  height: fit-content;
+  max-height: 84vh;
+  margin-right: 16px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  background-color: #d8f3dc;
+  padding: 12px;
+  font-size: 1.5em;
 }
 
 .column {
-    min-width: 300px;
-    width: 300px;
-    height: fit-content;
-    max-height: 84vh;
-    margin-right: 16px;
-    border-radius: 5px;
+  min-width: 300px;
+  width: 300px;
+  height: fit-content;
+  max-height: 84vh;
+  margin-right: 16px;
+  border-radius: 5px;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    .my-col-head {
-        @include flexCenter();
-        padding: 8px;
-
-        .col-title {
-            padding: 4px;
-            font-size: 1.5em;
-        }
-
-        .col-title-input {
-            padding: 4px;
-            font-weight: bold;
-            font-size: 1.5em;
-            width: 242px;
-
-            &:focus {
-                background-color: wheat;
-                outline-color: black;
-            }
-        }
-
-        .add-task-btn {
-            width: 30px;
-            font-size: 1.5em;
-            background-color: white;
-        }
-    }
-
-    .t-container {
-        overflow-y: auto;
-        min-height: 100px;
-        padding: 8px 8px 0 8px;
-    }
-
-    .new-card-form {
-        padding-bottom: 8px;
-        // background-color: #d8f3dc;
-
-        textarea {
-            font-size: 1em;
-            outline: none;
-            border: none;
-            resize: none;
-            width: 100%;
-            padding: 8px;
-            border-radius: 4px;
-            background-color: inherit;
-            // border: 1px solid #d8f3dc;
-
-            &:hover {
-                cursor: pointer;
-                background-color: white;
-                border: 1px solid white;
-            }
-
-            &:focus {
-                cursor: auto;
-                border: 1px solid lightgrey;
-                background-color: white;
-            }
-        }
-
-        button {
-            margin-top: 2px;
-            padding: 6px;
-            font-size: 1em;
-            color: white;
-            // background-color: #2d6a4f;
-            border: none;
-            border-radius: 4px;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-}
-
-.t-box {
-    background-color: white;
-    font-size: 1em;
-    border: 1px solid lightgrey;
-    border-radius: 4px;
+  .my-col-head {
+    @include flexCenter();
     padding: 8px;
-    margin-bottom: 8px;
 
-    display: flex;
-    align-items: center;
-
-    &:focus {
-        outline: none;
-        border-color: red;
-    }
-}
-
-.fade {
-    box-shadow: 0 0 5px 3px lightgray;
-}
-
-.context-menu {
-    width: 150px;
-    background-color: rgba(110, 110, 110, 0.95);
-    border-radius: 4px;
-    padding: 5px 0;
-    border: 1px solid rgb(100, 100, 100);
-
-    .context-item {
-        font-size: 1em;
-        padding: 2px 10px;
-        font-weight: bold;
-        color: white;
-
-        &:hover {
-            cursor: pointer;
-            background-color: rgb(165, 165, 165);
-        }
+    .col-title {
+      padding: 4px;
+      font-size: 1.5em;
     }
 
-}
+    .col-title-input {
+      padding: 4px;
+      font-weight: bold;
+      font-size: 1.5em;
+      width: 242px;
 
-.close-modal {
-    cursor: pointer;
-}
-
-.card-modal-outer {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 10;
-    @include flexCenter();
-
-    .card-modal-inner {
-        padding: 10px;
-        min-height: 500px;
-        max-height: 95vh;
-        width: 800px;
-        background-color: lightgray;
-        border-radius: 6px;
-        overflow: auto;
-
-        .card-modal-form {
-            display: flex;
-            flex-direction: column;
-            padding: 12px;
-
-            .modal-top {
-                display: flex;
-            }
-
-            label {
-                margin: 5px 0; 
-            }
-
-            textarea {
-                font-size: 1.2em;
-                overflow-y: auto;
-                word-wrap:break-word;
-                resize: none;
-                border: none;
-                border-radius: 6px;
-                outline: none;
-                background-color: lightgray;
-                padding: 4px 8px;
-
-                &:focus {
-                    background-color: white;
-                }
-            }
-
-            .modal-ta-content {
-                font-size: 1.8em;
-                font-weight: bold;
-                margin-bottom: 12px;
-                transform: translateX(-8px);
-                transition: transform .1s ease;
-
-                &:focus {
-                    transform: translateX(0);
-                }
-            }
-
-            .modal-ta-desc {
-                background-color: rgb(187, 187, 187);
-            }
-
-            p {
-                opacity: 50%;
-            }
-
-            input {
-                margin: 20px 0;
-            }
-
-            .btn-container {
-                display: flex;
-
-                button {
-                    font-size: 1.2em;
-                    width: fit-content;
-                    margin: 10px 25px 10px 0;
-                    padding: 5px 12px;
-                    border-radius: 4px;
-                    border: none;
-                    color: white;
-                    cursor: pointer;
-
-                    &:hover {
-                        opacity: 70%;
-                    }
-                }
-            }
-
-        }
-    }
-}
-
-.recycle-head {
-    @include flexCenter();
-    padding: 12px;
-    margin-bottom: 20px;
-    font-size: 1.3em;
-}
-
-.recycle-msg {
-    margin: 100px auto;
-    width: fit-content;
-    font-size: 1.3em;
-    opacity: 60%;
-}
-
-.recycle-item {
-    @include flexCenter();
-    margin: 10px;
-    padding: 12px;
-    border-radius: 6px;
-    background-color: whitesmoke;
-    font-size: 1.5em;
-
-    .recycle-card-title {
-        font-weight: bold;
+      &:focus {
+        background-color: wheat;
+        outline-color: black;
+      }
     }
 
-    .recycle-card-num {
-        opacity: 50%;
-        margin-right: 20px;
+    .add-task-btn {
+      width: 30px;
+      font-size: 1.5em;
+      background-color: white;
+    }
+  }
+
+  .t-container {
+    overflow-y: auto;
+    min-height: 100px;
+    padding: 8px 8px 0 8px;
+  }
+
+  .new-card-form {
+    padding-bottom: 8px;
+    // background-color: #d8f3dc;
+
+    textarea {
+      font-size: 1em;
+      outline: none;
+      border: none;
+      resize: none;
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      background-color: inherit;
+      // border: 1px solid #d8f3dc;
+
+      &:hover {
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid white;
+      }
+
+      &:focus {
+        cursor: auto;
+        border: 1px solid lightgrey;
+        background-color: white;
+      }
     }
 
     button {
-        font-size: .7em;
-        width: fit-content;
-        margin: 8px;
-        padding: 5px 12px;
-        border-radius: 4px;
-        border: none;
-        color: white;
-        cursor: pointer;
+      margin-top: 2px;
+      padding: 6px;
+      font-size: 1em;
+      color: white;
+      // background-color: #2d6a4f;
+      border: none;
+      border-radius: 4px;
 
-        &:hover {
-            opacity: 70%;
-        }
+      &:hover {
+        cursor: pointer;
+      }
     }
+  }
+}
+
+.t-box {
+  background-color: white;
+  font-size: 1em;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+
+  display: flex;
+  align-items: center;
+
+  &:focus {
+    outline: none;
+    border-color: red;
+  }
+}
+
+.fade {
+  box-shadow: 0 0 5px 3px lightgray;
+}
+
+.context-menu {
+  width: 150px;
+  background-color: rgba(110, 110, 110, 0.95);
+  border-radius: 4px;
+  padding: 5px 0;
+  border: 1px solid rgb(100, 100, 100);
+
+  .context-item {
+    font-size: 1em;
+    padding: 2px 10px;
+    font-weight: bold;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(165, 165, 165);
+    }
+  }
+}
+
+.close-modal {
+  cursor: pointer;
+}
+
+.card-modal-outer {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  @include flexCenter();
+
+  .card-modal-inner {
+    padding: 10px;
+    min-height: 500px;
+    max-height: 95vh;
+    width: 800px;
+    background-color: lightgray;
+    border-radius: 6px;
+    overflow: auto;
+
+    .card-modal-form {
+      display: flex;
+      flex-direction: column;
+      padding: 12px;
+
+      .modal-top {
+        display: flex;
+      }
+
+      label {
+        margin: 5px 0;
+      }
+
+      textarea {
+        font-size: 1.2em;
+        overflow-y: auto;
+        word-wrap: break-word;
+        resize: none;
+        border: none;
+        border-radius: 6px;
+        outline: none;
+        background-color: lightgray;
+        padding: 4px 8px;
+
+        &:focus {
+          background-color: white;
+        }
+      }
+
+      .modal-ta-content {
+        font-size: 1.8em;
+        font-weight: bold;
+        margin-bottom: 12px;
+        transform: translateX(-8px);
+        transition: transform 0.1s ease;
+
+        &:focus {
+          transform: translateX(0);
+        }
+      }
+
+      .modal-ta-desc {
+        background-color: rgb(187, 187, 187);
+      }
+
+      p {
+        opacity: 50%;
+      }
+
+      input {
+        margin: 20px 0;
+      }
+
+      .btn-container {
+        display: flex;
+
+        button {
+          font-size: 1.2em;
+          width: fit-content;
+          margin: 10px 25px 10px 0;
+          padding: 5px 12px;
+          border-radius: 4px;
+          border: none;
+          color: white;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 70%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.recycle-head {
+  @include flexCenter();
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+.recycle-msg {
+  margin: 100px auto;
+  width: fit-content;
+  font-size: 1.3em;
+  opacity: 60%;
+}
+
+.recycle-item {
+  @include flexCenter();
+  margin: 10px;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: whitesmoke;
+  font-size: 1.5em;
+
+  .recycle-card-title {
+    font-weight: bold;
+  }
+
+  .recycle-card-num {
+    opacity: 50%;
+    margin-right: 20px;
+  }
+
+  button {
+    font-size: 0.7em;
+    width: fit-content;
+    margin: 8px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 70%;
+    }
+  }
 }
 
 .ham-drop {
-    height: 100%;
-    margin: 0;
-    padding: 8px;
-    position: relative;
-    @include flexCenter();
+  height: 100%;
+  margin: 0;
+  padding: 8px;
+  position: relative;
+  @include flexCenter();
 
-    .hamburger {
-        margin: 12px;
-        height: 20px;
-        width: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        cursor: pointer;
-    
-        .ham-line {
-            transition: transform .4s ease;
-            background-color: white;
-            width: 100%;
-            height: 2px;
-        }
+  .hamburger {
+    margin: 12px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+
+    .ham-line {
+      transition: transform 0.4s ease;
+      background-color: white;
+      width: 100%;
+      height: 2px;
     }
-    
-    .ham-content {
-        z-index: 20;
+  }
+
+  .ham-content {
+    z-index: 20;
+    position: absolute;
+    color: whitesmoke;
+    top: 50px;
+    right: 0;
+    transition: transform 0.4s ease;
+    background-color: #081c15;
+    box-shadow: 0px 3px 10px 3px rgba(0, 0, 0, 0.2);
+
+    .ham-select {
+      width: 150px;
+      padding: 8px 15px;
+      text-align: right;
+      cursor: pointer;
+
+      &:hover {
+        background-color: gray;
+      }
+    }
+
+    .ham-space {
+      // padding-bottom: 12px;
+      position: relative;
+
+      .pref-content {
+        display: none;
         position: absolute;
-        color: whitesmoke;
-        top: 50px;
-        right: 0;
-        transition: transform .4s ease;
+        width: 150px;
+        right: 150px;
+        top: 0;
         background-color: #081c15;
-        box-shadow: 0px 3px 10px 3px rgba(0,0,0,0.2);
-    
-        .ham-select {
-            width: 150px;
-            padding: 8px 15px;
-            text-align: right;
-            cursor: pointer;
+      }
 
-            &:hover {
-                background-color: gray;
-            }
+      &:hover {
+        .pref-content {
+          display: block;
         }
-
-        .ham-space {
-            // padding-bottom: 12px;
-            position: relative;
-
-            .pref-content {
-                display: none;
-                position: absolute;
-                width: 150px;
-                right: 150px;
-                top: 0;
-                background-color: #081c15;
-            }
-
-            &:hover {
-                .pref-content {
-                    display: block;
-                }
-            }
-        }
+      }
     }
-    
-    .ham-active {
-        .ham1 {
-            transform: rotate(-45deg) translate(-5px, 2px);
-        }
+  }
 
-        .ham2 {
-            display: none;
-        }
-
-        .ham3 {
-            transform: rotate(45deg) translate(-5px, -2px);
-        }
+  .ham-active {
+    .ham1 {
+      transform: rotate(-45deg) translate(-5px, 2px);
     }
 
-    .ham-content-hide {
-        transform: translateX(151px);
-        box-shadow: none;
+    .ham2 {
+      display: none;
     }
+
+    .ham3 {
+      transform: rotate(45deg) translate(-5px, -2px);
+    }
+  }
+
+  .ham-content-hide {
+    transform: translateX(151px);
+    box-shadow: none;
+  }
 }
 
 .alert-clear {
-    position: absolute;
-    background-color: white;
-    height: 180px;
-    width: 50vw;
-    top: 0;
-    left: 50%;
-    margin-left: -25vw;
-    padding: 10px;
-    border-radius: 0 0 6px 6px;
-    box-shadow: 0 0 10px 1px black;
-    z-index: 30;
-    transform: translateY(-180px);
-    transition: transform .5s ease;
+  position: absolute;
+  background-color: white;
+  height: 180px;
+  width: 50vw;
+  top: 0;
+  left: 50%;
+  margin-left: -25vw;
+  padding: 10px;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 0 10px 1px black;
+  z-index: 30;
+  transform: translateY(-180px);
+  transition: transform 0.5s ease;
 
-    h1 {
-        text-align: center;
-        font-size: 1.8em;
+  h1 {
+    text-align: center;
+    font-size: 1.8em;
+  }
+
+  p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+  }
+
+  .alert-btn-grp {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    button {
+      font-size: 1.1em;
+      width: fit-content;
+      margin: 8px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      border: none;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 70%;
+      }
     }
-
-    p {
-        text-align: center;
-        margin-top: 10px;
-        font-size: 1.1em;
-    }
-
-    .alert-btn-grp {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-
-        button {
-            font-size: 1.1em;
-            width: fit-content;
-            margin: 8px;
-            padding: 5px 12px;
-            border-radius: 4px;
-            border: none;
-            color: white;
-            cursor: pointer;
-    
-            &:hover {
-                opacity: 70%;
-            }
-        }
-    }
+  }
+}
+.title {
+  color: white;
+  margin-left: 3rem;
 }
