@@ -56,7 +56,7 @@ function Card(props, { pref }) {
                         return (
                             <div
                                 className={`t-box ${snapshot.isDragging
-                                    ? "fade"
+                                    ? "fade-t-box"
                                     : null
                                     }`}
                                 {...otherProps}

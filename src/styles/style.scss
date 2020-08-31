@@ -218,7 +218,7 @@ body {
     }
 }
 
-.fade {
+.fade-t-box {
     box-shadow: 0 0 5px 3px lightgray;
 }
 
@@ -519,6 +519,10 @@ body {
     }
 }
 
+.dash-title {
+    margin-left: 24px;
+}
+
 .lp-body {
   background-color: rgb(149, 213, 178);
   width: 100vw;
@@ -547,6 +551,10 @@ body {
       background-size: cover;
     }
   }
+}
+
+@media only screen and (max-width: 950px) {
+
 }
 
 @media only screen and (max-width: 850px) {

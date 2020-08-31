@@ -445,7 +445,7 @@ function App() {
       />
 
       <header className="dash-header" style={{backgroundColor: preferences.color.highlight}}>
-        <h2 className="title" style={{color: preferences.color.projTitle}}>Kanban</h2>
+        <h2 className="dash-title" style={{color: preferences.color.projTitle}}>Kanban</h2>
         <span className="spacer"></span>
         <div className="ham-drop">
           <div
