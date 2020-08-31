@@ -423,10 +423,6 @@ body {
   cursor: pointer;
 }
 
-.card-modal-outer .card-modal-inner .card-modal-form .btn-container button:hover {
-  opacity: 70%;
-}
-
 .recycle-head {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -488,10 +484,6 @@ body {
   border: none;
   color: white;
   cursor: pointer;
-}
-
-.recycle-item button:hover {
-  opacity: 70%;
 }
 
 .ham-drop {
@@ -651,10 +643,6 @@ body {
   border: none;
   color: white;
   cursor: pointer;
-}
-
-.alert-clear .alert-btn-grp button:hover {
-  opacity: 70%;
 }
 
 .dash-title {
