@@ -22,7 +22,6 @@ export default function RecycleInfo(props) {
                 <div className="button-container">
                     <button className="retrieve-btn" style={{ backgroundColor: props.pref.color.highlight }} onClick={() => handleRetrieve(column)}>Retrieve List</button>
                     <button className="delete-btn" style={{ backgroundColor: props.pref.color.warning }} onClick={() => handleRemove(column)}>Delete List</button>
-
                 </div>
             </div>
         )

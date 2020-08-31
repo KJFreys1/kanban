@@ -48,7 +48,7 @@ body {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 3vh 8px;
 }
 
@@ -58,7 +58,6 @@ body {
           flex-grow: 1;
 }
 
-/* Style The Dropdown Button */
 .dropbtn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -77,7 +76,6 @@ body {
   cursor: pointer;
 }
 
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -89,7 +87,7 @@ body {
   left: 30px;
   top: 0;
   background-color: #f9f9f9;
-  min-width: 260px;
+  min-width: 200px;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -182,7 +180,7 @@ body {
 }
 
 .column .t-container-outer {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .column .t-container-outer .t-container {
@@ -197,12 +195,12 @@ body {
   padding: 8px 8px 0 8px;
 }
 
-.column .t-container-outer .new-card-form {
+.column .new-card-form {
   padding: 0 8px 8px 8px;
   border-radius: 0 0 8px 8px;
 }
 
-.column .t-container-outer .new-card-form textarea {
+.column .new-card-form textarea {
   font-size: 1em;
   outline: none;
   border: none;
@@ -213,19 +211,19 @@ body {
   background-color: inherit;
 }
 
-.column .t-container-outer .new-card-form textarea:hover {
+.column .new-card-form textarea:hover {
   cursor: pointer;
   background-color: white;
   border: 1px solid white;
 }
 
-.column .t-container-outer .new-card-form textarea:focus {
+.column .new-card-form textarea:focus {
   cursor: auto;
   border: 1px solid lightgrey;
   background-color: white;
 }
 
-.column .t-container-outer .new-card-form button {
+.column .new-card-form button {
   margin-top: 2px;
   padding: 6px;
   font-size: 1em;
@@ -234,7 +232,7 @@ body {
   border-radius: 4px;
 }
 
-.column .t-container-outer .new-card-form button:hover {
+.column .new-card-form button:hover {
   cursor: pointer;
 }
 
@@ -318,7 +316,7 @@ body {
   max-width: 800px;
   background-color: lightgray;
   border-radius: 6px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form {

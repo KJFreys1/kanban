@@ -158,7 +158,7 @@ function Column(props) {
               <div className="dropdown">
                 <button
                   className="dropbtn"
-                  style={{ ...hoverStyle, color: props.pref.color.text}}
+                  style={{ ...hoverStyle, color: props.pref.color.text }}
                   onMouseOver={() => setHoverStyle({ backgroundColor: props.pref.color.bgPrimary })}
                   onMouseOut={() => setHoverStyle({ backgroundColor: props.pref.color.bgSecondary })}
                 >...</button>
@@ -200,22 +200,22 @@ function Column(props) {
                   </div>
                 )}
               </Droppable>
-              <span className="spacer"></span>
-              <form className="new-card-form" style={{ backgroundColor: props.pref.color.bgSecondary }} onSubmit={handleSubmit}>
-                <TextareaAutosize
-                  value={showButton || info.length > 0 ? info : "+ Add new card"}
-                  placeholder="+ Add new card"
-                  style={{ border: `1px solid ${props.pref.color.bgSecondary}`, backgroundColor: props.pref.color.bgCard, ...textOffset }}
-                  onChange={handleInfoChange}
-                  onFocus={handleTextFocus}
-                  onBlur={handleTextBlur}
-                  onMouseOver={handleTextHover}
-                  onMouseLeave={handleTextUnhover}
-                />
-                {showButton ? submitBtn : null}
-              </form>
-              <span ref={scrollRef} ></span>
             </div>
+            <span className="spacer"></span>
+            <form className="new-card-form" style={{ backgroundColor: props.pref.color.bgSecondary }} onSubmit={handleSubmit}>
+              <TextareaAutosize
+                value={showButton || info.length > 0 ? info : "+ Add new card"}
+                placeholder="+ Add new card"
+                style={{ border: `1px solid ${props.pref.color.bgSecondary}`, backgroundColor: props.pref.color.bgCard, ...textOffset }}
+                onChange={handleInfoChange}
+                onFocus={handleTextFocus}
+                onBlur={handleTextBlur}
+                onMouseOver={handleTextHover}
+                onMouseLeave={handleTextUnhover}
+              />
+              {showButton ? submitBtn : null}
+            </form>
+            <span ref={scrollRef} ></span>
           </div>
         )
       }}
