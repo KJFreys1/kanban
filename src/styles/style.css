@@ -633,8 +633,35 @@ body {
   opacity: 70%;
 }
 
-.title {
-  margin-left: 24px;
+.lp-body {
+  background-color: #95d5b2;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 10vh;
+}
+
+.lp-body .title {
+  color: white;
+  margin-left: 3rem;
+}
+
+.lp-body .center {
+  width: 80vw;
+  height: 50vh;
+  margin: auto;
+  background-color: #e9ecef;
+  padding: 4rem 2rem;
+  border-radius: 0.3rem;
+}
+
+@media (min-width: 1200px) {
+  .lp-body .img {
+    width: 40vw;
+    height: 35vh;
+    background-image: url("../imgs/pexels-tranmautritam-251225.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 @media only screen and (max-width: 850px) {
