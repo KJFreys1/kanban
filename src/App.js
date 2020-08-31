@@ -7,8 +7,8 @@ import Dashboard from './Dashboard'
 export default function App() {
     return (
         <main>
-            <Route path="/" exact component={LandingPage} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/" exact render={props => <LandingPage {...props} /> } />
+            <Route path="/dashboard" render={props => <Dashboard {...props} /> } />
         </main>
     )
 }

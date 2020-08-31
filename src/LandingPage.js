@@ -1,23 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-export default function LandingPage() {
+export default function LandingPage(props) {
+  const handleNav = () => {
+    props.history.push("/dashboard")
+  }
+
   return (
     <div className="lp-body">
-      <div className="center">
+      <div className="lp-center">
         <div className="float-left">
-          <h1>Kanban</h1>
-          <p>Organize your life</p>
+          <h1>Kanban Board</h1>
+          <p>Organize your life for a minty-fresh mind</p>
           <hr></hr>
           <p>This simple, yet powerful tool to help manage your tasks.</p>
-          <button className="primary">
-            <Link className="btn" to="/dashboard">
-              Dashboard
-            </Link>
+          <button className="call-to-action" onClick={handleNav}>
+            Get Started
           </button>
         </div>
         <div className="float-right img">
-            
+
         </div>
       </div>
     </div>

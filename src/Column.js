@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react"
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { v4 as uuidv4 } from 'uuid'
 import { FaAngleRight } from 'react-icons/fa'
@@ -21,7 +21,7 @@ function Column(props) {
 
   const scrollRef = useRef(null)
 
-  const inputRef = useRef(null);
+  const inputRef = useRef(null)
 
   const handleNewCardSelect = () => {
     setStaticTitle(true)
@@ -185,8 +185,8 @@ function Column(props) {
                   <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
                   <div className="drop-select" onClick={handleDeleteListSelect}>Discard List</div>
                   <div className="drop-break"></div>
-                  <div className="drop-select" onClick={handleReorderNewestSelect}>Newest First</div>
-                  <div className="drop-select" onClick={handleReorderOldestSelect}>Oldest First</div>
+                  <div className="drop-select" onClick={handleReorderOldestSelect}>Newest First</div>
+                  <div className="drop-select" onClick={handleReorderNewestSelect}>Oldest First</div>
                 </div>
               </div>
             </header>

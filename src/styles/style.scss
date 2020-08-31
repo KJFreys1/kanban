@@ -560,14 +560,6 @@ body {
     margin-left: 3rem;
   }
 
-  .center {
-    width: 80vw;
-    height: 50vh;
-    margin: auto;
-    background-color: #e9ecef;
-    padding: 4rem 2rem;
-    border-radius: 0.3rem;
-  }
   @include med {
     .img {
       width: 40vw;
@@ -577,6 +569,30 @@ body {
       background-size: cover;
     }
   }
+}
+
+.lp-center {
+    width: 80vw;
+    height: 50vh;
+    margin: auto;
+    background-color: #e9ecef;
+    padding: 4rem 2rem;
+    border-radius: 0.3rem;
+  }
+
+.call-to-action {
+    margin: 40px 0;
+    padding: 10px 14px;
+    border-radius: 50px;
+    border: none;
+    background-color: #2d6a4f;
+    color: white;
+    font-size: 1.6em;
+
+    &:hover {
+        box-shadow: -3px 3px 3px 3px lightgray;
+        padding: 12px 16px;
+    }
 }
 
 @media only screen and (max-width: 950px) {
@@ -594,5 +610,9 @@ body {
 
     .recycle-item {
         flex-direction: column;
+    }
+
+    .lp-center {
+        height: 60vh;
     }
 }

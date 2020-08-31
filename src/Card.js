@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 import { Draggable } from 'react-beautiful-dnd'
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
-import { FaImage, FaBook } from 'react-icons/fa';
+import { FaImage, FaBook } from 'react-icons/fa'
 
 function Card(props) {
     const handleMenuSelect = (e, data) => {
