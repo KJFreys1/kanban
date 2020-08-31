@@ -396,7 +396,6 @@ body {
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form p {
-  opacity: 70%;
   margin: 0;
 }
 
@@ -444,7 +443,6 @@ body {
   width: -moz-fit-content;
   width: fit-content;
   font-size: 1.3em;
-  opacity: 60%;
 }
 
 .recycle-item {
@@ -469,7 +467,6 @@ body {
 }
 
 .recycle-item .recycle-card-num {
-  opacity: 50%;
   margin-right: 20px;
 }
 
