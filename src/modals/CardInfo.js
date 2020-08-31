@@ -37,11 +37,11 @@ export default function CardInfo({
     if (data.card) {
       const newCard = {
         card: {
-          id: data.card.id,
+          ...data.card,
           content,
           description,
-          date: data.card.date,
-          image
+          image,
+          updated: new Date().toJSON().slice(0, 10).replace(/-/g, '/')
         },
       }
       editCard(newCard)
@@ -106,11 +106,14 @@ export default function CardInfo({
             onChange={handleDescriptionChange}
             minRows={2}
           />
-          {data.card && data.card.date ? (
-            <p>Created on {data.card.date}</p>
-          ) : (
-              <p></p>
-            )}
+          {data.card && data.card.date
+            ? <p>Created on {data.card.date}</p>
+            : null
+          }
+          {data.card && data.card.updated
+            ? <p>Last edited on {data.card.updated}</p>
+            : null
+          }
           {data.card && data.card.image ? <img src={data.card.image} height={50} width={50} /> : null}
           <input
             type="file"

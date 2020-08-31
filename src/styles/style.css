@@ -363,7 +363,10 @@ body {
 
 .card-modal-outer .card-modal-inner .card-modal-form p {
   opacity: 50%;
-  margin-bottom: 20px;
+}
+
+.card-modal-outer .card-modal-inner .card-modal-form input {
+  margin: 20px 0;
 }
 
 .card-modal-outer .card-modal-inner .card-modal-form .btn-container {

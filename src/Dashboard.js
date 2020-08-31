@@ -190,8 +190,6 @@ function App() {
   }
 
   const handleNewCard = newData => {
-    const utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-
     const newState = {
       ...mainData,
       tasks: {
@@ -200,7 +198,7 @@ function App() {
           id: newData.card.id,
           content: newData.card.content,
           description: newData.card.description,
-          date: utc
+          date: new Date().toJSON().slice(0,10).replace(/-/g,'/')
         }
       },
       columns: {
@@ -244,13 +242,7 @@ function App() {
       ...mainData,
       tasks: {
         ...mainData.tasks,
-        [newData.card.id]: {
-          id: newData.card.id,
-          content: newData.card.content,
-          description: newData.card.description,
-          date: newData.card.date,
-          image: newData.card.image
-        }
+        [newData.card.id]: {...newData.card}
       }
     }
     setMainData(newState)
