@@ -108,6 +108,10 @@ function App() {
 
   useEffect(() => {
     ls.set("preferences", preferences);
+    setNewTitleStyle({
+      backgroundColor: preferences.color.bgSecondary,
+      color: preferences.color.text
+    })
   }, [preferences]);
 
   // const onDragStart = () => {
@@ -220,6 +224,7 @@ function App() {
           content: newData.card.content,
           description: newData.card.description,
           date: new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
+          _date: new Date().getTime()
         },
       },
       columns: {
@@ -371,6 +376,28 @@ function App() {
     setMainData(newState);
   };
 
+  const handleReorderList = (newData, direction) => {
+    const tempTasks = {...mainData.tasks}
+    const newColumn = {...mainData.columns[newData.column.id]}
+    
+    if (direction === "newest") {
+      newColumn.taskIds.sort((a, b) => tempTasks[a]._date - tempTasks[b]._date)
+    } else if (direction === "oldest") {
+      newColumn.taskIds.sort((a, b) => tempTasks[b]._date - tempTasks[a]._date)
+    } else {
+      return
+    }
+
+    const newState = {
+      ...mainData,
+      columns: {
+        ...mainData.columns,
+        [newData.column.id]: newColumn
+      }
+    }
+    setMainData(newState)
+  }
+
   const toggleHamburger = () => {
     setHamburger((prevState) => !prevState);
   };
@@ -451,6 +478,7 @@ function App() {
         handleEditCard={handleEditCard}
         handleDeleteCard={handleDeleteCard}
         handleEditList={handleEditList}
+        handleReorderList={handleReorderList}
         handleDeleteList={handleDeleteList}
         toggleModal={toggleModal}
       />

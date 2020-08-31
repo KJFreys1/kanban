@@ -62,7 +62,7 @@ function Card(props, { pref }) {
                                 {...otherProps}
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
-                                onDoubleClick={handleEdit}
+                                onClick={handleEdit}
                             >
                                 {props.task.content}
                             </div>

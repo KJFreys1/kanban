@@ -37,6 +37,24 @@ function Column(props) {
     props.handleDeleteList(newData)
   }
 
+  const handleReorderNewestSelect = () => {
+    const newData = {
+      column: {
+        id: props.column.id
+      }
+    }
+    props.handleReorderList(newData, "newest")
+  }
+
+  const handleReorderOldestSelect = () => {
+    const newData = {
+      column: {
+        id: props.column.id
+      }
+    }
+    props.handleReorderList(newData, "oldest")
+  }
+
   const handleStaticToggle = () => {
     setStaticTitle(false)
   }
@@ -165,6 +183,9 @@ function Column(props) {
                   <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
                   <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>
                   <div className="drop-select" onClick={handleDeleteListSelect}>Discard List</div>
+                  <div className="drop-break"></div>
+                  <div className="drop-select" onClick={handleReorderNewestSelect}>Newest First</div>
+                  <div className="drop-select" onClick={handleReorderOldestSelect}>Oldest First</div>
                 </div>
               </div>
             </header>

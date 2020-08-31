@@ -109,6 +109,13 @@ body {
   display: block;
 }
 
+.dropdown-content .drop-break {
+  background-color: lightgray;
+  height: 1px;
+  text-decoration: none;
+  display: block;
+}
+
 .dropdown-content .drop-select:hover {
   background-color: #f1f1f1;
   cursor: pointer;
@@ -604,12 +611,10 @@ body {
   -webkit-box-shadow: 0 0 10px 1px black;
           box-shadow: 0 0 10px 1px black;
   z-index: 30;
-  -webkit-transform: translateY(-180px);
-          transform: translateY(-180px);
-  -webkit-transition: -webkit-transform .5s ease;
-  transition: -webkit-transform .5s ease;
-  transition: transform .5s ease;
-  transition: transform .5s ease, -webkit-transform .5s ease;
+  -webkit-transition: -webkit-transform .7s ease;
+  transition: -webkit-transform .7s ease;
+  transition: transform .7s ease;
+  transition: transform .7s ease, -webkit-transform .7s ease;
 }
 
 .alert-clear h1 {
@@ -651,6 +656,7 @@ body {
 }
 
 .dash-title {
+  font-size: 1.7em;
   margin-left: 24px;
 }
 
@@ -682,6 +688,16 @@ body {
     background-image: url("../imgs/pexels-tranmautritam-251225.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .alert-clear {
+    width: 80vw;
+    margin-left: -40vw;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
   }
 }
 
