@@ -235,7 +235,7 @@ body {
     margin-bottom: 8px;
 
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
     &:focus {
         outline: none;
@@ -335,6 +335,7 @@ body {
 
             p {
                 opacity: 70%;
+                margin: 0;
             }
 
             input {

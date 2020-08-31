@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { v4 as uuidv4 } from 'uuid'
+import { FaAngleRight } from 'react-icons/fa'
 import TextareaAutosize from 'react-textarea-autosize'
 import Card from "./Card"
 
@@ -178,7 +179,7 @@ function Column(props) {
                   style={{ ...hoverStyle, color: props.pref.color.text }}
                   onMouseOver={() => setHoverStyle({ backgroundColor: props.pref.color.bgPrimary })}
                   onMouseOut={() => setHoverStyle({ backgroundColor: props.pref.color.bgSecondary })}
-                >...</button>
+                ><FaAngleRight /></button>
                 <div className="dropdown-content">
                   <div className="drop-select" onClick={handleNewCardSelect}>New Card</div>
                   <div className="drop-select" onClick={handleStaticToggle}>Edit List</div>

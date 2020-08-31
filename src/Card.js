@@ -1,8 +1,9 @@
 import React from "react";
 import { Draggable } from 'react-beautiful-dnd'
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu"
+import { FaImage, FaBook } from 'react-icons/fa';
 
-function Card(props, { pref }) {
+function Card(props) {
     const handleMenuSelect = (e, data) => {
         data.action()
     }
@@ -65,6 +66,10 @@ function Card(props, { pref }) {
                                 onClick={handleEdit}
                             >
                                 {props.task.content}
+                                <div>
+                                    {props.task.image ? <FaImage style={{marginRight: "8px", marginTop: "5px"}} /> : null}
+                                    {props.task.description ? <FaBook style={{marginRight: "8px", marginTop: "5px"}} /> : null}
+                                </div>
                             </div>
                         )
                     }}

@@ -12,7 +12,7 @@ export default function CardInfo({
 }) {
   const [content, setContent] = useState(data.card ? data.card.content : "")
   const [description, setDescription] = useState(data.card ? data.card.description : "")
-  const [image, setImage] = useState(data.card ? data.card.image : "")
+  const [image, setImage] = useState(data.card ? data.card.image : null)
 
   const handleContentChange = (e) => {
     setContent(e.target.value)
@@ -111,7 +111,7 @@ export default function CardInfo({
             ? <p>Last edited on {data.card.updated}</p>
             : null
           }
-          {data.card && data.card.image ? <img src={data.card.image} height={50} width={50} alt="uploaded from local storage" /> : null}
+          {image ? <img src={image} height={200} width={200} style={{marginTop: "20px"}} alt="uploaded from local storage" /> : null}
           <input
             type="file"
             id="imageFile"
