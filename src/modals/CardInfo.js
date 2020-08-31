@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import TextareaAutosize from "react-textarea-autosize";
+import React, { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import ls from 'local-storage'
+import TextareaAutosize from "react-textarea-autosize"
 
 export default function CardInfo({
   data,
@@ -10,29 +11,28 @@ export default function CardInfo({
   deleteCard,
   pref,
 }) {
-  const [content, setContent] = useState(data.card ? data.card.content : "");
-  const [description, setDescription] = useState(
-    data.card ? data.card.description : ""
-  );
+  const [content, setContent] = useState(data.card ? data.card.content : "")
+  const [description, setDescription] = useState(data.card ? data.card.description : "")
+  const [image, setImage] = useState(data.card ? data.card.image : "")
 
   const handleContentChange = (e) => {
-    setContent(e.target.value);
-  };
+    setContent(e.target.value)
+  }
 
   const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
+    setDescription(e.target.value)
+  }
 
   const handleDeleteBtn = () => {
-    deleteCard(data);
-    close();
-  };
+    deleteCard(data)
+    close()
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (content === "") {
-      close();
-      return;
+      close()
+      return
     }
     if (data.card) {
       const newCard = {
@@ -40,10 +40,11 @@ export default function CardInfo({
           id: data.card.id,
           content,
           description,
-          date: data.card.date
+          date: data.card.date,
+          image
         },
-      };
-      editCard(newCard);
+      }
+      editCard(newCard)
     } else {
       const newData = {
         card: {
@@ -54,11 +55,29 @@ export default function CardInfo({
         column: {
           id: data.column.id,
         },
-      };
-      addCard(newData);
+      }
+      addCard(newData)
     }
-    close();
-  };
+    close()
+  }
+
+  const imageUpload = e => {
+    const file = e.target.files[0]
+    getBase64(file).then(base64 => {
+      setImage(base64)
+      // ls.set("image", base64)
+      console.debug("file stored", base64)
+    })
+  }
+
+  const getBase64 = file => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = error => reject(error)
+      reader.readAsDataURL(file)
+    })
+  }
 
   return (
     <div className="card-modal-outer">
@@ -92,6 +111,13 @@ export default function CardInfo({
           ) : (
               <p></p>
             )}
+          {data.card && data.card.image ? <img src={data.card.image} height={50} width={50} /> : null}
+          <input
+            type="file"
+            id="imageFile"
+            name='imageFile'
+            onChange={imageUpload}
+          />
           <div className="btn-container">
             <button
               className="submit-btn"
@@ -113,5 +139,5 @@ export default function CardInfo({
         </form>
       </div>
     </div>
-  );
+  )
 }

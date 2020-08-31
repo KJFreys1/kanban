@@ -248,7 +248,8 @@ function App() {
           id: newData.card.id,
           content: newData.card.content,
           description: newData.card.description,
-          date: newData.card.date
+          date: newData.card.date,
+          image: newData.card.image
         }
       }
     }

@@ -9,12 +9,7 @@ function Card(props, { pref }) {
 
     const handleEdit = () => {
         let newData = {
-            card: {
-                id: props.task.id,
-                content: props.task.content,
-                description: props.task.description,
-                date: props.task.date
-            },
+            card: props.task,
             column: props.column
         }
         props.toggleModal(newData)
